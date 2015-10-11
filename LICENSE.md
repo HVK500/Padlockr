@@ -19,3 +19,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+=============================================================================
+
+Included SQLite libraries are free to copy, modify, publish, use, compile, sell, or 
+distribute the original SQLite code, either in source code form or as a compiled 
+binary, for any purpose, commercial or non-commercial, and by any means. 
+<https://www.sqlite.org/copyright.html>
