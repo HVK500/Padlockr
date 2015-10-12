@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.lblSetMpass = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.lblReMpass = new System.Windows.Forms.Label();
+            this.firstMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.secondMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.btnSet = new System.Windows.Forms.Button();
             this.btnMaskWatcher2 = new System.Windows.Forms.Button();
             this.picKey = new System.Windows.Forms.PictureBox();
             this.btnMaskWatcher1 = new System.Windows.Forms.Button();
+            this.lblValidation = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picKey)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,36 +49,39 @@
             this.lblSetMpass.TabIndex = 0;
             this.lblSetMpass.Text = "Please enter a master password:";
             // 
-            // label1
+            // lblReMpass
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 56);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Re-enter the master password:";
+            this.lblReMpass.AutoSize = true;
+            this.lblReMpass.Location = new System.Drawing.Point(132, 56);
+            this.lblReMpass.Name = "lblReMpass";
+            this.lblReMpass.Size = new System.Drawing.Size(151, 13);
+            this.lblReMpass.TabIndex = 0;
+            this.lblReMpass.Text = "Re-enter the master password:";
             // 
-            // maskedTextBox1
+            // firstMaskedTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(135, 29);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.PasswordChar = '*';
-            this.maskedTextBox1.Size = new System.Drawing.Size(236, 20);
-            this.maskedTextBox1.TabIndex = 1;
-            this.maskedTextBox1.TabStop = false;
+            this.firstMaskedTextBox.Location = new System.Drawing.Point(135, 29);
+            this.firstMaskedTextBox.Name = "firstMaskedTextBox";
+            this.firstMaskedTextBox.Size = new System.Drawing.Size(236, 20);
+            this.firstMaskedTextBox.TabIndex = 1;
+            this.firstMaskedTextBox.TabStop = false;
+            this.firstMaskedTextBox.UseSystemPasswordChar = true;
+            this.firstMaskedTextBox.TextChanged += new System.EventHandler(this.firstMaskedTextBox_TextChanged);
             // 
-            // maskedTextBox2
+            // secondMaskedTextBox
             // 
-            this.maskedTextBox2.Enabled = false;
-            this.maskedTextBox2.Location = new System.Drawing.Point(135, 72);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.PasswordChar = '*';
-            this.maskedTextBox2.Size = new System.Drawing.Size(236, 20);
-            this.maskedTextBox2.TabIndex = 2;
-            this.maskedTextBox2.TabStop = false;
+            this.secondMaskedTextBox.Enabled = false;
+            this.secondMaskedTextBox.Location = new System.Drawing.Point(135, 72);
+            this.secondMaskedTextBox.Name = "secondMaskedTextBox";
+            this.secondMaskedTextBox.Size = new System.Drawing.Size(236, 20);
+            this.secondMaskedTextBox.TabIndex = 2;
+            this.secondMaskedTextBox.TabStop = false;
+            this.secondMaskedTextBox.UseSystemPasswordChar = true;
+            this.secondMaskedTextBox.TextChanged += new System.EventHandler(this.secondMaskedTextBox_TextChanged);
             // 
             // btnSet
             // 
+            this.btnSet.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSet.Enabled = false;
             this.btnSet.Location = new System.Drawing.Point(135, 98);
             this.btnSet.Name = "btnSet";
@@ -86,7 +90,6 @@
             this.btnSet.TabStop = false;
             this.btnSet.Text = "Set";
             this.btnSet.UseVisualStyleBackColor = true;
-            this.btnSet.Click += new System.EventHandler(this.btnSet_Click);
             // 
             // btnMaskWatcher2
             // 
@@ -125,19 +128,30 @@
             this.btnMaskWatcher1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher1_MouseDown);
             this.btnMaskWatcher1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher1_MouseUp);
             // 
+            // lblValidation
+            // 
+            this.lblValidation.AutoSize = true;
+            this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblValidation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblValidation.Location = new System.Drawing.Point(288, 60);
+            this.lblValidation.Name = "lblValidation";
+            this.lblValidation.Size = new System.Drawing.Size(0, 9);
+            this.lblValidation.TabIndex = 4;
+            // 
             // passBoxLock
             // 
             this.AcceptButton = this.btnSet;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 132);
+            this.Controls.Add(this.lblValidation);
             this.Controls.Add(this.btnMaskWatcher1);
             this.Controls.Add(this.btnMaskWatcher2);
             this.Controls.Add(this.btnSet);
-            this.Controls.Add(this.maskedTextBox2);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.secondMaskedTextBox);
+            this.Controls.Add(this.firstMaskedTextBox);
             this.Controls.Add(this.picKey);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblReMpass);
             this.Controls.Add(this.lblSetMpass);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "passBoxLock";
@@ -155,11 +169,12 @@
 
         private System.Windows.Forms.Label lblSetMpass;
         private System.Windows.Forms.PictureBox picKey;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.Label lblReMpass;
         private System.Windows.Forms.Button btnSet;
         private System.Windows.Forms.Button btnMaskWatcher2;
         private System.Windows.Forms.Button btnMaskWatcher1;
+        private System.Windows.Forms.Label lblValidation;
+        public System.Windows.Forms.MaskedTextBox firstMaskedTextBox;
+        public System.Windows.Forms.MaskedTextBox secondMaskedTextBox;
     }
 }

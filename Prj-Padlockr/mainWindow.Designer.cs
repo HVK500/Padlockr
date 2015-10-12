@@ -284,7 +284,7 @@
             // 
             // saveDatabaseDialog
             // 
-            this.saveDatabaseDialog.Filter = "DB Files|*.sqlite";
+            this.saveDatabaseDialog.Filter = "DB Files|*.db";
             this.saveDatabaseDialog.Title = "Select where you want to save the new database";
             // 
             // mainWindow

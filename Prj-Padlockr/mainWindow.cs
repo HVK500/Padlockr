@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Data.SQLite;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Data.SQLite;
 
 namespace Prj_Padlockr
 {
@@ -13,7 +13,11 @@ namespace Prj_Padlockr
         }
 
         // Global vars
+        //TODO: Set this on startup to match the whats in the xml/registry
         bool defaultDatabaseSet = false;
+        string dbDir;
+        // - Create the instance that controls all the DB interactions
+        SQLiteDatabase liteDB = new SQLiteDatabase();
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
@@ -62,43 +66,39 @@ namespace Prj_Padlockr
             // Create a new database file through the file browser
             if (saveDatabaseDialog.ShowDialog() == DialogResult.OK)
             {
-                try
+                dbDir = saveDatabaseDialog.FileName;
+                SQLiteConnection.CreateFile(dbDir);
+                liteDB.DBConnect(dbDir);
+                // Create a new passBoxLock instance to parse the password back from the firstMaskedTextBox
+                passBoxLock pb = new passBoxLock();
+                if (pb.ShowDialog() == DialogResult.OK)
                 {
-                    //SQLiteConnection.CreateFile(saveDatabaseDialog.FileName);
-                    // Add method to open up the database in the saved location
-                    openSqlConnection(saveDatabaseDialog.FileName);
+                    // Sets the DB Password and creates the PDB Table
+                    liteDB.InitializeDB(pb.firstMaskedTextBox.Text);
+                    if (MessageBox.Show("Would you like to set the new database to your default?", "Set new database to default", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        //TODO: Make the new DB the default
+
+                    }
                 }
-                catch (Exception f)
-                {
-                    MessageBox.Show("Didn't save due to this error: " + f);
-                }
+                
             }
         }
 
         private void menuItemOpenDatabase_Click(object sender, EventArgs e)
         {
-
+            //TODO: Create away to open an exsisting DB through a file browser
         }
 
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
-
+            //TODO: Link up the window to change your DB Master password
         }
 
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
-
+            //TODO: Link up the method to add new enties in to the PDB Table of the open DB
         }
 
-        public void openSqlConnection(string fileName)
-        {
-            //SQLiteConnection conn = new SQLiteConnection("Data Source=" + fileName + ";Version=3"); // Parse the parameters for the connection to the DB
-            if(new passBoxLock().ShowDialog() == DialogResult.OK)
-            {
-
-            }
-            //conn.SetPassword(); // Parse the password in here
-            //conn.Open();
-        }
     }
 }
