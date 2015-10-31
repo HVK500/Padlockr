@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainWindow));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemNewDatabase = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +55,7 @@
             this.lblVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.listBox = new System.Windows.Forms.ListBox();
             this.saveDatabaseDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openDatabaseDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -85,6 +87,7 @@
             // 
             // menuItemNewDatabase
             // 
+            this.menuItemNewDatabase.Image = global::Prj_Padlockr.Properties.Resources.DB_Create;
             this.menuItemNewDatabase.Name = "menuItemNewDatabase";
             this.menuItemNewDatabase.Size = new System.Drawing.Size(154, 22);
             this.menuItemNewDatabase.Text = "New Database";
@@ -92,6 +95,7 @@
             // 
             // menuItemOpenDatabase
             // 
+            this.menuItemOpenDatabase.Image = global::Prj_Padlockr.Properties.Resources.DB_Open;
             this.menuItemOpenDatabase.Name = "menuItemOpenDatabase";
             this.menuItemOpenDatabase.Size = new System.Drawing.Size(154, 22);
             this.menuItemOpenDatabase.Text = "Open Database";
@@ -104,6 +108,7 @@
             // 
             // menuItemExit
             // 
+            this.menuItemExit.Image = global::Prj_Padlockr.Properties.Resources.Exit;
             this.menuItemExit.Name = "menuItemExit";
             this.menuItemExit.Size = new System.Drawing.Size(154, 22);
             this.menuItemExit.Text = "Exit";
@@ -120,6 +125,7 @@
             // 
             // menuItemChangeMasterPassword
             // 
+            this.menuItemChangeMasterPassword.Enabled = false;
             this.menuItemChangeMasterPassword.Name = "menuItemChangeMasterPassword";
             this.menuItemChangeMasterPassword.Size = new System.Drawing.Size(207, 22);
             this.menuItemChangeMasterPassword.Text = "Change Master Password";
@@ -127,9 +133,11 @@
             // 
             // menuItemSetDefaultDatabase
             // 
+            this.menuItemSetDefaultDatabase.Enabled = false;
             this.menuItemSetDefaultDatabase.Name = "menuItemSetDefaultDatabase";
             this.menuItemSetDefaultDatabase.Size = new System.Drawing.Size(207, 22);
             this.menuItemSetDefaultDatabase.Text = "Set Default Database";
+            this.menuItemSetDefaultDatabase.Click += new System.EventHandler(this.menuItemSetDefaultDatabase_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -245,6 +253,7 @@
             this.txtBoxSearch.MaxLength = 255;
             this.txtBoxSearch.Name = "txtBoxSearch";
             this.txtBoxSearch.Size = new System.Drawing.Size(175, 25);
+            this.txtBoxSearch.TextChanged += new System.EventHandler(this.txtBoxSearch_TextChanged);
             // 
             // btnClearSearch
             // 
@@ -253,7 +262,7 @@
             this.btnClearSearch.Image = global::Prj_Padlockr.Properties.Resources.Clear;
             this.btnClearSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClearSearch.Name = "btnClearSearch";
-            this.btnClearSearch.Size = new System.Drawing.Size(23, 22);
+            this.btnClearSearch.Size = new System.Drawing.Size(23, 20);
             this.btnClearSearch.Text = "Clear Search";
             // 
             // statusStrip
@@ -285,7 +294,12 @@
             // saveDatabaseDialog
             // 
             this.saveDatabaseDialog.Filter = "DB Files|*.db";
-            this.saveDatabaseDialog.Title = "Select where you want to save the new database";
+            this.saveDatabaseDialog.Title = "Create New Database";
+            // 
+            // openDatabaseDialog
+            // 
+            this.openDatabaseDialog.Filter = "DB Files|*.db";
+            this.openDatabaseDialog.Title = "Open Existing Database";
             // 
             // mainWindow
             // 
@@ -297,6 +311,7 @@
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MaximizeBox = false;
             this.Name = "mainWindow";
@@ -343,6 +358,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemSetDefaultDatabase;
         private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.SaveFileDialog saveDatabaseDialog;
+        private System.Windows.Forms.OpenFileDialog openDatabaseDialog;
     }
 }
 

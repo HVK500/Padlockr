@@ -22,7 +22,15 @@ SOFTWARE.
 
 =============================================================================
 
+<https://www.sqlite.org/copyright.html>
 Included SQLite libraries are free to copy, modify, publish, use, compile, sell, or 
 distribute the original SQLite code, either in source code form or as a compiled 
-binary, for any purpose, commercial or non-commercial, and by any means. 
-<https://www.sqlite.org/copyright.html>
+binary, for any purpose, commercial or non-commercial, and by any means.
+
+=============================================================================
+Attributions
+
+Safe UI icons made by Yusuke Kamiyamane - [Under the Creative Commons Attribution 3.0 Unported license](https://creativecommons.org/licenses/by/3.0)
+Padlock & Exit icons from <https://icons8.com/> - [Under the Creative Commons Attribution-NoDerivs 3.0 Unported license](https://creativecommons.org/licenses/by-nd/3.0)
+UI icons made by Visual Pharm - Free for commercial use
+		

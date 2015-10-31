@@ -174,7 +174,7 @@
         private System.Windows.Forms.Button btnMaskWatcher2;
         private System.Windows.Forms.Button btnMaskWatcher1;
         private System.Windows.Forms.Label lblValidation;
-        public System.Windows.Forms.MaskedTextBox firstMaskedTextBox;
-        public System.Windows.Forms.MaskedTextBox secondMaskedTextBox;
+        protected internal System.Windows.Forms.MaskedTextBox firstMaskedTextBox;
+        protected internal System.Windows.Forms.MaskedTextBox secondMaskedTextBox;
     }
 }

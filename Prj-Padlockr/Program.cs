@@ -15,7 +15,7 @@ namespace Prj_Padlockr
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Register a handler to load in the SQLite.dll from memory
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            //AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             Application.Run(new mainWindow());
         }
