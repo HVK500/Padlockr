@@ -41,6 +41,7 @@
             this.btnMaskWatcher = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.btnLinkPaste = new System.Windows.Forms.Button();
+            this.lblLinkVal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -131,6 +132,7 @@
             // 
             this.linkTxtBox.Location = new System.Drawing.Point(99, 92);
             this.linkTxtBox.Name = "linkTxtBox";
+            this.linkTxtBox.ReadOnly = true;
             this.linkTxtBox.Size = new System.Drawing.Size(261, 20);
             this.linkTxtBox.TabIndex = 2;
             // 
@@ -167,12 +169,23 @@
             this.btnLinkPaste.UseVisualStyleBackColor = true;
             this.btnLinkPaste.Click += new System.EventHandler(this.btnLinkPaste_Click);
             // 
+            // lblLinkVal
+            // 
+            this.lblLinkVal.AutoSize = true;
+            this.lblLinkVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblLinkVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblLinkVal.Location = new System.Drawing.Point(97, 118);
+            this.lblLinkVal.Name = "lblLinkVal";
+            this.lblLinkVal.Size = new System.Drawing.Size(0, 9);
+            this.lblLinkVal.TabIndex = 6;
+            // 
             // entryAddBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(448, 153);
+            this.Controls.Add(this.lblLinkVal);
             this.Controls.Add(this.btnLinkPaste);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.btnMaskWatcher);
@@ -213,5 +226,6 @@
         private System.Windows.Forms.Button btnMaskWatcher;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Button btnLinkPaste;
+        private System.Windows.Forms.Label lblLinkVal;
     }
 }

@@ -102,6 +102,12 @@
     <Compile Include="entryAddBox.Designer.cs">
       <DependentUpon>entryAddBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="generatePassBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="generatePassBox.Designer.cs">
+      <DependentUpon>generatePassBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="mainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="entryAddBox.resx">
       <DependentUpon>entryAddBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="generatePassBox.resx">
+      <DependentUpon>generatePassBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainWindow.resx">
       <DependentUpon>mainWindow.cs</DependentUpon>

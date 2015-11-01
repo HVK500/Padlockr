@@ -4,12 +4,15 @@ C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Pa
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\Padlockr.pdb
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\EntityFramework.dll
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\System.Data.SQLite.dll
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\System.Data.SQLite.EF6.dll
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\System.Data.SQLite.Linq.dll
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\EntityFramework.xml
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csprojResolveAssemblyReference.cache
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.aboutBox.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.entryAddBox.resources
+C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.generatePassBox.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.mainWindow.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxChange.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxLock.resources
@@ -18,5 +21,3 @@ C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Pa
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csproj.GenerateResource.Cache
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.exe
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.pdb
-C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\bin\Debug\System.Data.SQLite.dll
-C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csprojResolveAssemblyReference.cache

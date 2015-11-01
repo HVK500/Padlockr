@@ -66,14 +66,27 @@ namespace Prj_Padlockr
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            //TODO: Implement - Generate a password in the password creation window
-            throw new NotImplementedException();
+            //TODO: Generate a password in the password creation window
+            generatePassBox gPb = new generatePassBox();
+            if (gPb.ShowDialog() == DialogResult.OK)
+            {
+                // Get generated password from txtBoxGen
+            }
         }
 
         private void btnLinkPaste_Click(object sender, EventArgs e)
         {
-            //TODO: Implement - Paste link from clipboard
-            throw new NotImplementedException();
+            // Paste link from clipboard only if it contains a link format!
+            string cbText = Clipboard.GetText();
+            if (cbText.Contains("http://") == true || cbText.Contains("https://") == true)
+            {
+                linkTxtBox.Text = cbText;
+                lblLinkVal.Text = "";
+            }
+            else
+            {
+                lblLinkVal.Text = "Only paste links - e.g. 'http:\\google.com\'";
+            }
         }
     }
 }

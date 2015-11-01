@@ -110,7 +110,7 @@ namespace Prj_Padlockr
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(conn);
-                cmd.CommandText = "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK) VALUES(" + s1 + ", " + s2 + ", " + s3 + ", " + s4 + ")";
+                cmd.CommandText = "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK) VALUES(" + s1 + ", " + s2 + ", " + s3 + ", "+ "'" + s4 + "'" + ");";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)
