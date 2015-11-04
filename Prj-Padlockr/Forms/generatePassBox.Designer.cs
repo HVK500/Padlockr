@@ -66,7 +66,6 @@
             this.btnAccept.TabStop = false;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // txtBoxGen
             // 
@@ -132,7 +131,6 @@
             // 
             // btnGenerate
             // 
-            this.btnGenerate.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGenerate.Location = new System.Drawing.Point(476, 17);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(78, 45);
@@ -221,7 +219,6 @@
 
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAccept;
-        private System.Windows.Forms.TextBox txtBoxGen;
         private System.Windows.Forms.CheckBox chkBoxSLetters;
         private System.Windows.Forms.CheckBox chkBoxCapLetters;
         private System.Windows.Forms.CheckBox chkBoxNum;
@@ -230,5 +227,6 @@
         private System.Windows.Forms.NumericUpDown numLength;
         private System.Windows.Forms.GroupBox gBoxOptions;
         private System.Windows.Forms.GroupBox gBoxGenPass;
+        protected internal System.Windows.Forms.TextBox txtBoxGen;
     }
 }

@@ -48,7 +48,7 @@
             this.btnCopyPassword = new System.Windows.Forms.ToolStripButton();
             this.btnVisitLink = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.lbSpyGlass = new System.Windows.Forms.ToolStripLabel();
+            this.lblSpyGlass = new System.Windows.Forms.ToolStripLabel();
             this.txtBoxSearch = new System.Windows.Forms.ToolStripTextBox();
             this.btnClearSearch = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -157,7 +157,7 @@
             this.btnCopyPassword,
             this.btnVisitLink,
             this.toolStripSeparator3,
-            this.lbSpyGlass,
+            this.lblSpyGlass,
             this.txtBoxSearch,
             this.btnClearSearch});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
@@ -186,6 +186,7 @@
             this.btnEditEntry.Name = "btnEditEntry";
             this.btnEditEntry.Size = new System.Drawing.Size(23, 22);
             this.btnEditEntry.Text = "Edit Entry";
+            this.btnEditEntry.Click += new System.EventHandler(this.btnEditEntry_Click);
             // 
             // btnDeleteEntry
             // 
@@ -237,14 +238,14 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // lbSpyGlass
+            // lblSpyGlass
             // 
-            this.lbSpyGlass.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.lbSpyGlass.Enabled = false;
-            this.lbSpyGlass.Image = global::Prj_Padlockr.Properties.Resources.SpyGlass;
-            this.lbSpyGlass.Name = "lbSpyGlass";
-            this.lbSpyGlass.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.lbSpyGlass.Size = new System.Drawing.Size(22, 22);
+            this.lblSpyGlass.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.lblSpyGlass.Enabled = false;
+            this.lblSpyGlass.Image = global::Prj_Padlockr.Properties.Resources.SpyGlass;
+            this.lblSpyGlass.Name = "lblSpyGlass";
+            this.lblSpyGlass.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.lblSpyGlass.Size = new System.Drawing.Size(22, 22);
             // 
             // txtBoxSearch
             // 
@@ -290,6 +291,7 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(360, 316);
             this.listBox.TabIndex = 4;
+            this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // saveDatabaseDialog
             // 
@@ -352,7 +354,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblVersion;
         private System.Windows.Forms.ToolStripButton btnVisitLink;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel lbSpyGlass;
+        private System.Windows.Forms.ToolStripLabel lblSpyGlass;
         private System.Windows.Forms.ToolStripTextBox txtBoxSearch;
         private System.Windows.Forms.ToolStripButton btnClearSearch;
         private System.Windows.Forms.ToolStripMenuItem menuItemSetDefaultDatabase;

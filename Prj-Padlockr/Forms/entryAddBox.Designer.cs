@@ -42,6 +42,7 @@
             this.btnGenerate = new System.Windows.Forms.Button();
             this.btnLinkPaste = new System.Windows.Forms.Button();
             this.lblLinkVal = new System.Windows.Forms.Label();
+            this.btnClearLink = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -51,6 +52,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabStop = false;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -62,6 +64,7 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.TabStop = false;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             // 
@@ -80,6 +83,7 @@
             this.accNameTxtBox.Name = "accNameTxtBox";
             this.accNameTxtBox.Size = new System.Drawing.Size(336, 20);
             this.accNameTxtBox.TabIndex = 2;
+            this.accNameTxtBox.TabStop = false;
             this.accNameTxtBox.TextChanged += new System.EventHandler(this.accNameTxtBox_TextChanged);
             // 
             // label2
@@ -98,6 +102,7 @@
             this.userNameTxtBox.Name = "userNameTxtBox";
             this.userNameTxtBox.Size = new System.Drawing.Size(336, 20);
             this.userNameTxtBox.TabIndex = 2;
+            this.userNameTxtBox.TabStop = false;
             this.userNameTxtBox.TextChanged += new System.EventHandler(this.userNameTxtBox_TextChanged);
             // 
             // label3
@@ -116,6 +121,7 @@
             this.passMaskedTextBox.Name = "passMaskedTextBox";
             this.passMaskedTextBox.Size = new System.Drawing.Size(244, 20);
             this.passMaskedTextBox.TabIndex = 3;
+            this.passMaskedTextBox.TabStop = false;
             this.passMaskedTextBox.UseSystemPasswordChar = true;
             this.passMaskedTextBox.TextChanged += new System.EventHandler(this.passMaskedBox_TextChanged);
             // 
@@ -135,6 +141,8 @@
             this.linkTxtBox.ReadOnly = true;
             this.linkTxtBox.Size = new System.Drawing.Size(261, 20);
             this.linkTxtBox.TabIndex = 2;
+            this.linkTxtBox.TabStop = false;
+            this.linkTxtBox.TextChanged += new System.EventHandler(this.linkTxtBox_TextChanged);
             // 
             // btnMaskWatcher
             // 
@@ -144,6 +152,7 @@
             this.btnMaskWatcher.Name = "btnMaskWatcher";
             this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);
             this.btnMaskWatcher.TabIndex = 4;
+            this.btnMaskWatcher.TabStop = false;
             this.btnMaskWatcher.UseVisualStyleBackColor = true;
             this.btnMaskWatcher.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseDown);
             this.btnMaskWatcher.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseUp);
@@ -155,16 +164,18 @@
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 22);
             this.btnGenerate.TabIndex = 5;
+            this.btnGenerate.TabStop = false;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // btnLinkPaste
             // 
-            this.btnLinkPaste.Location = new System.Drawing.Point(360, 91);
+            this.btnLinkPaste.Location = new System.Drawing.Point(380, 91);
             this.btnLinkPaste.Name = "btnLinkPaste";
-            this.btnLinkPaste.Size = new System.Drawing.Size(75, 22);
+            this.btnLinkPaste.Size = new System.Drawing.Size(55, 22);
             this.btnLinkPaste.TabIndex = 5;
+            this.btnLinkPaste.TabStop = false;
             this.btnLinkPaste.Text = "Paste";
             this.btnLinkPaste.UseVisualStyleBackColor = true;
             this.btnLinkPaste.Click += new System.EventHandler(this.btnLinkPaste_Click);
@@ -179,12 +190,25 @@
             this.lblLinkVal.Size = new System.Drawing.Size(0, 9);
             this.lblLinkVal.TabIndex = 6;
             // 
+            // btnClearLink
+            // 
+            this.btnClearLink.Enabled = false;
+            this.btnClearLink.Location = new System.Drawing.Point(360, 91);
+            this.btnClearLink.Name = "btnClearLink";
+            this.btnClearLink.Size = new System.Drawing.Size(21, 22);
+            this.btnClearLink.TabIndex = 7;
+            this.btnClearLink.TabStop = false;
+            this.btnClearLink.Text = "X";
+            this.btnClearLink.UseVisualStyleBackColor = true;
+            this.btnClearLink.Click += new System.EventHandler(this.btnClearLink_Click);
+            // 
             // entryAddBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(448, 153);
+            this.Controls.Add(this.btnClearLink);
             this.Controls.Add(this.lblLinkVal);
             this.Controls.Add(this.btnLinkPaste);
             this.Controls.Add(this.btnGenerate);
@@ -227,5 +251,6 @@
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
+        private System.Windows.Forms.Button btnClearLink;
     }
 }

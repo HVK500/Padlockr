@@ -34,6 +34,7 @@
             this.lblMpass = new System.Windows.Forms.Label();
             this.picLock = new System.Windows.Forms.PictureBox();
             this.btnMaskWatcher = new System.Windows.Forms.Button();
+            this.lblPassVal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +67,7 @@
             this.maskedMasterTextBox.Name = "maskedMasterTextBox";
             this.maskedMasterTextBox.Size = new System.Drawing.Size(241, 20);
             this.maskedMasterTextBox.TabIndex = 1;
+            this.maskedMasterTextBox.TabStop = false;
             this.maskedMasterTextBox.UseSystemPasswordChar = true;
             this.maskedMasterTextBox.TextChanged += new System.EventHandler(this.maskedMasterTextBox_TextChanged);
             // 
@@ -97,9 +99,20 @@
             this.btnMaskWatcher.Name = "btnMaskWatcher";
             this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);
             this.btnMaskWatcher.TabIndex = 4;
+            this.btnMaskWatcher.TabStop = false;
             this.btnMaskWatcher.UseVisualStyleBackColor = true;
             this.btnMaskWatcher.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseDown);
             this.btnMaskWatcher.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseUp);
+            // 
+            // lblPassVal
+            // 
+            this.lblPassVal.AutoSize = true;
+            this.lblPassVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblPassVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPassVal.Location = new System.Drawing.Point(258, 38);
+            this.lblPassVal.Name = "lblPassVal";
+            this.lblPassVal.Size = new System.Drawing.Size(0, 9);
+            this.lblPassVal.TabIndex = 5;
             // 
             // passBoxUnlock
             // 
@@ -108,6 +121,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(383, 132);
+            this.Controls.Add(this.lblPassVal);
             this.Controls.Add(this.btnMaskWatcher);
             this.Controls.Add(this.picLock);
             this.Controls.Add(this.lblMpass);
@@ -134,5 +148,6 @@
         private System.Windows.Forms.PictureBox picLock;
         protected internal System.Windows.Forms.MaskedTextBox maskedMasterTextBox;
         private System.Windows.Forms.Button btnMaskWatcher;
+        protected internal System.Windows.Forms.Label lblPassVal;
     }
 }

@@ -11,7 +11,7 @@ namespace Prj_Padlockr
         /// </summary>
         [STAThread]
         static void Main()
-        {
+         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             // Register a handler to load in the SQLite.dll from memory

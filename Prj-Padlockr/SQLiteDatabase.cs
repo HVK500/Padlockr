@@ -106,11 +106,33 @@ namespace Prj_Padlockr
         {
             SQLiteConnection conn = new SQLiteConnection(dbUnlock);
             conn.Open();
-
+            //TODO: Check whether the password and link are being saved with out the quotes ''
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(conn);
-                cmd.CommandText = "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK) VALUES(" + s1 + ", " + s2 + ", " + s3 + ", "+ "'" + s4 + "'" + ");";
+                cmd.CommandText = "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK) VALUES('" + s1 + "', '" +  s2 + "', '" + s3 + "', '" + s4 + "');";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception f)
+            {
+                throw new Exception(f.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void UpdateData(string oldAccName ,string s1, string s2, string s3, string s4)
+        {
+            SQLiteConnection conn = new SQLiteConnection(dbUnlock);
+            conn.Open();
+            //TODO: Check whether the password and link are being saved with out the quotes ''
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(conn);
+                //TODO: Figure out a way to find out the rowid of an entry
+                cmd.CommandText = "UPDATE PDB SET ACC_NAME = '" + s1 + "', USER_NAME = '" + s2 + "', PASS = '" + s3 + "', LINK = '" + s4 + "' WHERE ACC_NAME = '" + oldAccName + "';";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)

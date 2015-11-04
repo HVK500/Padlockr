@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace Prj_Padlockr
 {
-    public partial class entryAddBox : Form
+    public partial class entryEditBox : Form
     {
-        public entryAddBox()
+        public entryEditBox()
         {
             InitializeComponent();
         }
@@ -20,7 +20,7 @@ namespace Prj_Padlockr
             passMaskedTextBox.UseSystemPasswordChar = true;
         }
 
-        private void passMaskedBox_TextChanged(object sender, System.EventArgs e)
+        private void passMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
             {
@@ -66,11 +66,12 @@ namespace Prj_Padlockr
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            //TODO: Generate a password in the password creation window
+            // Generate a password in the password creation window
             generatePassBox gPb = new generatePassBox();
             if (gPb.ShowDialog() == DialogResult.OK)
             {
                 // Get generated password from txtBoxGen
+                passMaskedTextBox.Text = gPb.txtBoxGen.Text;
             }
         }
 
@@ -86,6 +87,23 @@ namespace Prj_Padlockr
             else
             {
                 lblLinkVal.Text = "Only paste links - e.g. 'http:\\google.com\'";
+            }
+        }
+
+        private void btnClearLink_Click(object sender, EventArgs e)
+        {
+            linkTxtBox.Text = "";
+        }
+
+        private void linkTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(linkTxtBox.Text) == false)
+            {
+                btnClearLink.Enabled = true;
+            }
+            else
+            {
+                btnClearLink.Enabled = false;
             }
         }
     }
