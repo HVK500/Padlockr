@@ -131,11 +131,11 @@
             // lblValidation
             // 
             this.lblValidation.AutoSize = true;
-            this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lblValidation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblValidation.Location = new System.Drawing.Point(288, 60);
+            this.lblValidation.Location = new System.Drawing.Point(289, 57);
             this.lblValidation.Name = "lblValidation";
-            this.lblValidation.Size = new System.Drawing.Size(0, 9);
+            this.lblValidation.Size = new System.Drawing.Size(0, 13);
             this.lblValidation.TabIndex = 4;
             // 
             // passBoxLock

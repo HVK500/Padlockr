@@ -1,13 +1,23 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Prj_Padlockr
 {
     public partial class entryAddBox : Form
     {
-        public entryAddBox()
+        // In "entryAddBox.Designer.cs" at the bottom is the initialization of the "Add Entry" / "Edit Entry" dialog
+        //public entryAddBox()
+        //{
+        //    InitializeComponent();
+        //}
+
+        private void entryAddBox_Load(object sender, EventArgs e)
         {
-            InitializeComponent();
+            if (Text == "Edit Entry")
+            {
+                accNameTxtBox.Enabled = false;
+            }
         }
 
         private void btnMaskWatcher_MouseDown(object sender, MouseEventArgs e)
@@ -39,11 +49,26 @@ namespace Prj_Padlockr
             if (String.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
             {
                 userNameTxtBox.Enabled = true;
+                if (String.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
+                {
+                    userNameTxtBox.Enabled = true;
+                }
+                if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                {
+                    passMaskedTextBox.Enabled = true;
+                    btnMaskWatcher.Enabled = true;
+                    btnGenerate.Enabled = true;
+                }
+                if (String.IsNullOrWhiteSpace(userNameTxtBox.Text) == false && String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                {
+                    btnSubmit.Enabled = true;
+                }
             }
             else
             {
                 userNameTxtBox.Enabled = false;
                 passMaskedTextBox.Enabled = false;
+                btnMaskWatcher.Enabled = false;
                 btnGenerate.Enabled = false;
                 btnSubmit.Enabled = false;
             }
@@ -55,6 +80,10 @@ namespace Prj_Padlockr
             {
                 passMaskedTextBox.Enabled = true;
                 btnGenerate.Enabled = true;
+                if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                {
+                    btnSubmit.Enabled = true;
+                }
             }
             else
             {
@@ -106,5 +135,42 @@ namespace Prj_Padlockr
                 btnClearLink.Enabled = false;
             }
         }
+
+        // Checks whether ACC_NAME already exists before closing the dialog
+        private void entryAddBox_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult.ToString() != "Cancel")
+            {
+                if (String.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
+                {
+                    // Check whether the account name exsits
+                    DataTable dt = liteDB.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        if (dt.Rows.Count == 1)
+                        {
+                            // When New Entry encounters a Account name that is in the DB already it will cancel the closing event and show message 
+                            if (Text == "New Entry")
+                            {
+                                e.Cancel = true;
+                                MessageBox.Show("An account with the name '" + accNameTxtBox + "' already exists.", "Account Already Exists");
+                            }
+                            //else if (Text == "Edit Entry")
+                            //{
+                            //    // POST CHANGES
+                            //} 
+                        }
+
+                    }
+                    //else if (dt.Rows.Count == 0)
+                    //{
+                    //    // POST NEW
+                    //}
+                }
+            }
+            
+        }
+
     }
 }

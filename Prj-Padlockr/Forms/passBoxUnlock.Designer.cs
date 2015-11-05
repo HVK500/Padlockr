@@ -107,11 +107,11 @@
             // lblPassVal
             // 
             this.lblPassVal.AutoSize = true;
-            this.lblPassVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblPassVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lblPassVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblPassVal.Location = new System.Drawing.Point(258, 38);
+            this.lblPassVal.Location = new System.Drawing.Point(258, 35);
             this.lblPassVal.Name = "lblPassVal";
-            this.lblPassVal.Size = new System.Drawing.Size(0, 9);
+            this.lblPassVal.Size = new System.Drawing.Size(0, 13);
             this.lblPassVal.TabIndex = 5;
             // 
             // passBoxUnlock

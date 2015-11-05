@@ -183,11 +183,11 @@
             // lblLinkVal
             // 
             this.lblLinkVal.AutoSize = true;
-            this.lblLinkVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F);
+            this.lblLinkVal.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lblLinkVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblLinkVal.Location = new System.Drawing.Point(97, 118);
             this.lblLinkVal.Name = "lblLinkVal";
-            this.lblLinkVal.Size = new System.Drawing.Size(0, 9);
+            this.lblLinkVal.Size = new System.Drawing.Size(0, 13);
             this.lblLinkVal.TabIndex = 6;
             // 
             // btnClearLink
@@ -230,6 +230,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Entry";
             this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.entryAddBox_FormClosing);
+            this.Load += new System.EventHandler(this.entryAddBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,5 +254,13 @@
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
+        private SQLiteDatabase liteDB;
+
+        // Parse the liteDB object to the dialog window
+        public entryAddBox(SQLiteDatabase liteDB)
+        {
+            InitializeComponent();
+            this.liteDB = liteDB;
+        }
     }
 }

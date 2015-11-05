@@ -148,6 +148,7 @@
             // 
             // toolStrip
             // 
+            this.toolStrip.GripMargin = new System.Windows.Forms.Padding(1);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNewEntry,
             this.btnEditEntry,
@@ -160,6 +161,7 @@
             this.lblSpyGlass,
             this.txtBoxSearch,
             this.btnClearSearch});
+            this.toolStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Size = new System.Drawing.Size(384, 25);
@@ -212,6 +214,7 @@
             this.btnCopyUsername.Name = "btnCopyUsername";
             this.btnCopyUsername.Size = new System.Drawing.Size(23, 22);
             this.btnCopyUsername.Text = "Copy Username";
+            this.btnCopyUsername.Click += new System.EventHandler(this.btnCopyUsername_Click);
             // 
             // btnCopyPassword
             // 
@@ -222,6 +225,7 @@
             this.btnCopyPassword.Name = "btnCopyPassword";
             this.btnCopyPassword.Size = new System.Drawing.Size(23, 22);
             this.btnCopyPassword.Text = "Copy Password";
+            this.btnCopyPassword.Click += new System.EventHandler(this.btnCopyPassword_Click);
             // 
             // btnVisitLink
             // 
@@ -232,6 +236,7 @@
             this.btnVisitLink.Name = "btnVisitLink";
             this.btnVisitLink.Size = new System.Drawing.Size(23, 22);
             this.btnVisitLink.Text = "Visit Link";
+            this.btnVisitLink.Click += new System.EventHandler(this.btnVisitLink_Click);
             // 
             // toolStripSeparator3
             // 
@@ -265,6 +270,7 @@
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(23, 20);
             this.btnClearSearch.Text = "Clear Search";
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // statusStrip
             // 

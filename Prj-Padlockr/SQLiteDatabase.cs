@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-using System.Windows.Forms;
 
 namespace Prj_Padlockr
 {
@@ -60,7 +59,7 @@ namespace Prj_Padlockr
             {
                 // Create the PDB table in DB
                 SQLiteCommand cmd = new SQLiteCommand(conn);
-                cmd.CommandText = "CREATE TABLE PDB (ROWID int PRIMARY KEY ASC, ACC_NAME varchar(255) NOT NULL, USER_NAME varchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255));";
+                cmd.CommandText = "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME varchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255));";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)
@@ -76,7 +75,6 @@ namespace Prj_Padlockr
         // Gets all the data rows from the database table PDB
         public DataTable GetDataTable(string query)
         {
-            //TODO: Add a condition here to check if the password is correct
             SQLiteConnection conn = new SQLiteConnection(dbUnlock);
             conn.Open();
 
@@ -106,7 +104,6 @@ namespace Prj_Padlockr
         {
             SQLiteConnection conn = new SQLiteConnection(dbUnlock);
             conn.Open();
-            //TODO: Check whether the password and link are being saved with out the quotes ''
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(conn);
@@ -123,16 +120,14 @@ namespace Prj_Padlockr
             }
         }
 
-        public void UpdateData(string oldAccName ,string s1, string s2, string s3, string s4)
+        public void UpdateData(string oldAccName, string s1, string s2, string s3)
         {
             SQLiteConnection conn = new SQLiteConnection(dbUnlock);
             conn.Open();
-            //TODO: Check whether the password and link are being saved with out the quotes ''
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(conn);
-                //TODO: Figure out a way to find out the rowid of an entry
-                cmd.CommandText = "UPDATE PDB SET ACC_NAME = '" + s1 + "', USER_NAME = '" + s2 + "', PASS = '" + s3 + "', LINK = '" + s4 + "' WHERE ACC_NAME = '" + oldAccName + "';";
+                cmd.CommandText = "UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "' WHERE ACC_NAME = '" + oldAccName + "';";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)
