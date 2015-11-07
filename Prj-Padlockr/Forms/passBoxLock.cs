@@ -75,6 +75,5 @@ namespace Prj_Padlockr
                 lblValidation.Text = "";
             }
         }
-
     }
 }

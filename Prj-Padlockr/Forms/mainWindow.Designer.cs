@@ -199,6 +199,7 @@
             this.btnDeleteEntry.Name = "btnDeleteEntry";
             this.btnDeleteEntry.Size = new System.Drawing.Size(23, 22);
             this.btnDeleteEntry.Text = "Delete Entry";
+            this.btnDeleteEntry.Click += new System.EventHandler(this.btnDeleteEntry_Click);
             // 
             // toolStripSeparator2
             // 
@@ -235,7 +236,7 @@
             this.btnVisitLink.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnVisitLink.Name = "btnVisitLink";
             this.btnVisitLink.Size = new System.Drawing.Size(23, 22);
-            this.btnVisitLink.Text = "Visit Link";
+            this.btnVisitLink.Text = "Visit URL";
             this.btnVisitLink.Click += new System.EventHandler(this.btnVisitLink_Click);
             // 
             // toolStripSeparator3

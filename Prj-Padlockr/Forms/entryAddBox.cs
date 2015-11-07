@@ -115,7 +115,7 @@ namespace Prj_Padlockr
             }
             else
             {
-                lblLinkVal.Text = "Only paste links - e.g. 'http:\\google.com\'";
+                lblLinkVal.Text = "Only paste URLs - e.g. 'http:\\www.google.com\'";
             }
         }
 

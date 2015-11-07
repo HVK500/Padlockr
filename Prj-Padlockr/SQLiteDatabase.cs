@@ -13,12 +13,40 @@ namespace Prj_Padlockr
         public void DBUnlock(string dbDir, string pass)
         {
             dbUnlock = "Data Source=" + dbDir + ";Version=3;Password=" + pass + ";";
+            dbConn = "Data Source=" + dbDir + ";Version=3;";
         }
 
+        // Check if password unlocks the DB
         public bool passCheck()
         {
             bool pc;
             SQLiteConnection conn = new SQLiteConnection(dbUnlock);
+            try
+            {
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand(conn);
+                cmd.CommandText = "SELECT * FROM PDB ORDER BY ACC_NAME ASC LIMIT 1;";
+                cmd.ExecuteNonQuery();
+
+                pc = true;
+            }
+            catch (Exception)
+            {
+                pc = false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return pc;
+            
+        }
+        // Check if password unlocks the DB - with parameter
+        public bool passCheck(string pass)
+        {
+            bool pc;
+            SQLiteConnection conn = new SQLiteConnection(dbConn + "Password=" + pass + ";");
             try
             {
                 conn.Open();
@@ -38,11 +66,12 @@ namespace Prj_Padlockr
             }
 
             return pc;
-            
+
         }
 
         public void InitializeDB(string dbDir, string pass)
         {
+            //TODO: Optimise!
             // Sets the DB connect string
             dbConn = "Data Source=" + dbDir + ";Version=3;";
             // Sets the DB Unlock reference
@@ -59,7 +88,7 @@ namespace Prj_Padlockr
             {
                 // Create the PDB table in DB
                 SQLiteCommand cmd = new SQLiteCommand(conn);
-                cmd.CommandText = "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME varchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255));";
+                cmd.CommandText = "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME nvarchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255));";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)
@@ -70,6 +99,14 @@ namespace Prj_Padlockr
             {
                 conn.Close();
             }
+        }
+
+        // Change password of current DB
+        public void ChangePass(string newPass)
+        {
+            SQLiteConnection conn = new SQLiteConnection(dbUnlock);
+            conn.Open();
+            conn.ChangePassword(newPass);
         }
 
         // Gets all the data rows from the database table PDB
@@ -128,6 +165,26 @@ namespace Prj_Padlockr
             {
                 SQLiteCommand cmd = new SQLiteCommand(conn);
                 cmd.CommandText = "UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "' WHERE ACC_NAME = '" + oldAccName + "';";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception f)
+            {
+                throw new Exception(f.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void DeleteData(string accName)
+        {
+            SQLiteConnection conn = new SQLiteConnection(dbUnlock);
+            conn.Open();
+            try
+            {
+                SQLiteCommand cmd = new SQLiteCommand(conn);
+                cmd.CommandText = "DELETE FROM PDB WHERE ACC_NAME = '" + accName + "';";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception f)

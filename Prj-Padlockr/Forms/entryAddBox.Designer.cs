@@ -128,11 +128,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(63, 95);
+            this.label4.Location = new System.Drawing.Point(61, 95);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.Size = new System.Drawing.Size(32, 13);
             this.label4.TabIndex = 1;
-            this.label4.Text = "Link:";
+            this.label4.Text = "URL:";
             // 
             // linkTxtBox
             // 
