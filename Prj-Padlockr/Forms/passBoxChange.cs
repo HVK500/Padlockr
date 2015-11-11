@@ -5,19 +5,23 @@ namespace Prj_Padlockr
 {
     public partial class passBoxChange : Form
     {
-        public passBoxChange()
-        {
-            InitializeComponent();
-        }
+        // Component initialization is found in the "passBoxchange.Designer.cs" file
+        //public passBoxChange()
+        //{
+        //    InitializeComponent();
+        //}
 
         private void maskedOldBox_TextChanged(object sender, EventArgs e)
         {
+            // Validates the controls 
             formValidation();
         }
 
         private void maskedNewBox_TextChanged(object sender, EventArgs e)
         {
+            // Validates the controls 
             formValidation();
+
             if (maskedRnewBox.Text != maskedNewBox.Text)
             {
                 lblNewPassValidation.Text = "Passwords do not match!";
@@ -30,7 +34,9 @@ namespace Prj_Padlockr
 
         private void maskedRnewBox_TextChanged(object sender, EventArgs e)
         {
+            // Validates the controls 
             formValidation();
+
             if (maskedRnewBox.Text != maskedNewBox.Text)
             {
                 lblNewPassValidation.Text = "Passwords do not match!";
@@ -105,7 +111,7 @@ namespace Prj_Padlockr
             }
         }
 
-        public void formValidation()
+        private void formValidation()
         {
             if (String.IsNullOrWhiteSpace(maskedOldBox.Text) == false) // not empty
             {

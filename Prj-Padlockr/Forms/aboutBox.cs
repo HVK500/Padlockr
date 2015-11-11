@@ -12,11 +12,6 @@ namespace Prj_Padlockr
             InitializeComponent();
         }
 
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void aboutBox_Load(object sender, EventArgs e)
         {       
             lblCopyright.Text = "Copyright © " + DateTime.Today.Year.ToString() + " - Matthew Laird, alias HVK";

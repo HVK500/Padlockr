@@ -156,17 +156,11 @@ namespace Prj_Padlockr
                                 e.Cancel = true;
                                 MessageBox.Show("An account with the name '" + accNameTxtBox + "' already exists.", "Account Already Exists");
                             }
-                            //else if (Text == "Edit Entry")
-                            //{
                             //    // POST CHANGES
-                            //} 
                         }
 
                     }
-                    //else if (dt.Rows.Count == 0)
-                    //{
                     //    // POST NEW
-                    //}
                 }
             }
             

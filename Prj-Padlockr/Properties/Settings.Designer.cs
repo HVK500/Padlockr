@@ -25,18 +25,6 @@ namespace Prj_Padlockr.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool defaultDBset {
-            get {
-                return ((bool)(this["defaultDBset"]));
-            }
-            set {
-                this["defaultDBset"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string defaultDBpath {
             get {

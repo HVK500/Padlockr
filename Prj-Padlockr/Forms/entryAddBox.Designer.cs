@@ -254,10 +254,10 @@
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
-        private SQLiteDatabase liteDB;
+        private SQLiteHandler liteDB;
 
         // Parse the liteDB object to the dialog window
-        public entryAddBox(SQLiteDatabase liteDB)
+        public entryAddBox(SQLiteHandler liteDB)
         {
             InitializeComponent();
             this.liteDB = liteDB;

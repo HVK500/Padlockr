@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Prj_Padlockr
@@ -43,7 +42,7 @@ namespace Prj_Padlockr
                 if (chkBoxSpec.Checked == true)
                 {
                     // Special symbols 
-                    c += "~`!@#$%^&*()_+-={}[]:\";'<>?,./|\\";
+                    c += "~`!@#$%^&*()_+-={}[]:\";<>?,./|\\";
                 }
 
                 for (decimal i = numLength.Value; i > 0; --i)

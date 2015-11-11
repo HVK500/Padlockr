@@ -244,9 +244,10 @@
         protected internal System.Windows.Forms.MaskedTextBox maskedRnewBox;
         protected internal System.Windows.Forms.Label lblOpassValidation;
         protected internal System.Windows.Forms.Label lblNewPassValidation;
-        private SQLiteDatabase liteDB;
+        private SQLiteHandler liteDB;
 
-        public passBoxChange(SQLiteDatabase liteDB)
+        // Parse the liteDB object through the passBoxChange dialog
+        public passBoxChange(SQLiteHandler liteDB)
         {
             InitializeComponent();
             this.liteDB = liteDB;
