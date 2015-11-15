@@ -50,8 +50,7 @@
             this.btnCancel.Location = new System.Drawing.Point(479, 124);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.TabStop = false;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -62,8 +61,7 @@
             this.btnAccept.Location = new System.Drawing.Point(398, 124);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 0;
-            this.btnAccept.TabStop = false;
+            this.btnAccept.TabIndex = 6;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
@@ -85,8 +83,7 @@
             this.chkBoxSLetters.Location = new System.Drawing.Point(15, 19);
             this.chkBoxSLetters.Name = "chkBoxSLetters";
             this.chkBoxSLetters.Size = new System.Drawing.Size(86, 17);
-            this.chkBoxSLetters.TabIndex = 3;
-            this.chkBoxSLetters.TabStop = false;
+            this.chkBoxSLetters.TabIndex = 1;
             this.chkBoxSLetters.Text = "Small Letters";
             this.chkBoxSLetters.UseVisualStyleBackColor = true;
             // 
@@ -98,8 +95,7 @@
             this.chkBoxCapLetters.Location = new System.Drawing.Point(107, 19);
             this.chkBoxCapLetters.Name = "chkBoxCapLetters";
             this.chkBoxCapLetters.Size = new System.Drawing.Size(93, 17);
-            this.chkBoxCapLetters.TabIndex = 3;
-            this.chkBoxCapLetters.TabStop = false;
+            this.chkBoxCapLetters.TabIndex = 2;
             this.chkBoxCapLetters.Text = "Capital Letters";
             this.chkBoxCapLetters.UseVisualStyleBackColor = true;
             // 
@@ -112,7 +108,6 @@
             this.chkBoxNum.Name = "chkBoxNum";
             this.chkBoxNum.Size = new System.Drawing.Size(68, 17);
             this.chkBoxNum.TabIndex = 3;
-            this.chkBoxNum.TabStop = false;
             this.chkBoxNum.Text = "Numbers";
             this.chkBoxNum.UseVisualStyleBackColor = true;
             // 
@@ -124,8 +119,7 @@
             this.chkBoxSpec.Location = new System.Drawing.Point(280, 19);
             this.chkBoxSpec.Name = "chkBoxSpec";
             this.chkBoxSpec.Size = new System.Drawing.Size(103, 17);
-            this.chkBoxSpec.TabIndex = 3;
-            this.chkBoxSpec.TabStop = false;
+            this.chkBoxSpec.TabIndex = 4;
             this.chkBoxSpec.Text = "Special Symbols";
             this.chkBoxSpec.UseVisualStyleBackColor = true;
             // 
@@ -135,7 +129,6 @@
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(78, 45);
             this.btnGenerate.TabIndex = 0;
-            this.btnGenerate.TabStop = false;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -155,8 +148,7 @@
             0});
             this.numLength.Name = "numLength";
             this.numLength.Size = new System.Drawing.Size(55, 20);
-            this.numLength.TabIndex = 4;
-            this.numLength.TabStop = false;
+            this.numLength.TabIndex = 5;
             this.numLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numLength.Value = new decimal(new int[] {
             4,

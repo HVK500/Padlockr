@@ -41,6 +41,8 @@ C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Pa
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxLock.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxUnlock.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Properties.Resources.resources
+C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.viewNotesBox.resources
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csproj.GenerateResource.Cache
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.exe
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.pdb
+C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csprojResolveAssemblyReference.cache

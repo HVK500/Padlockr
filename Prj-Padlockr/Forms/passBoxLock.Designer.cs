@@ -63,8 +63,7 @@
             this.firstMaskedTextBox.Location = new System.Drawing.Point(135, 29);
             this.firstMaskedTextBox.Name = "firstMaskedTextBox";
             this.firstMaskedTextBox.Size = new System.Drawing.Size(236, 20);
-            this.firstMaskedTextBox.TabIndex = 1;
-            this.firstMaskedTextBox.TabStop = false;
+            this.firstMaskedTextBox.TabIndex = 0;
             this.firstMaskedTextBox.UseSystemPasswordChar = true;
             this.firstMaskedTextBox.TextChanged += new System.EventHandler(this.firstMaskedTextBox_TextChanged);
             // 
@@ -74,8 +73,7 @@
             this.secondMaskedTextBox.Location = new System.Drawing.Point(135, 72);
             this.secondMaskedTextBox.Name = "secondMaskedTextBox";
             this.secondMaskedTextBox.Size = new System.Drawing.Size(236, 20);
-            this.secondMaskedTextBox.TabIndex = 2;
-            this.secondMaskedTextBox.TabStop = false;
+            this.secondMaskedTextBox.TabIndex = 1;
             this.secondMaskedTextBox.UseSystemPasswordChar = true;
             this.secondMaskedTextBox.TextChanged += new System.EventHandler(this.secondMaskedTextBox_TextChanged);
             // 
@@ -86,8 +84,7 @@
             this.btnSet.Location = new System.Drawing.Point(135, 98);
             this.btnSet.Name = "btnSet";
             this.btnSet.Size = new System.Drawing.Size(254, 23);
-            this.btnSet.TabIndex = 3;
-            this.btnSet.TabStop = false;
+            this.btnSet.TabIndex = 2;
             this.btnSet.Text = "Set";
             this.btnSet.UseVisualStyleBackColor = true;
             // 

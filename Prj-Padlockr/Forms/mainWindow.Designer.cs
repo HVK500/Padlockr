@@ -47,6 +47,7 @@
             this.btnCopyUsername = new System.Windows.Forms.ToolStripButton();
             this.btnCopyPassword = new System.Windows.Forms.ToolStripButton();
             this.btnVisitLink = new System.Windows.Forms.ToolStripButton();
+            this.btnViewNotes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.lblSpyGlass = new System.Windows.Forms.ToolStripLabel();
             this.txtBoxSearch = new System.Windows.Forms.ToolStripTextBox();
@@ -157,6 +158,7 @@
             this.btnCopyUsername,
             this.btnCopyPassword,
             this.btnVisitLink,
+            this.btnViewNotes,
             this.toolStripSeparator3,
             this.lblSpyGlass,
             this.txtBoxSearch,
@@ -176,7 +178,7 @@
             this.btnNewEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNewEntry.Name = "btnNewEntry";
             this.btnNewEntry.Size = new System.Drawing.Size(23, 22);
-            this.btnNewEntry.Text = "New Entry";
+            this.btnNewEntry.Text = "New entry";
             this.btnNewEntry.Click += new System.EventHandler(this.btnNewEntry_Click);
             // 
             // btnEditEntry
@@ -187,7 +189,7 @@
             this.btnEditEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditEntry.Name = "btnEditEntry";
             this.btnEditEntry.Size = new System.Drawing.Size(23, 22);
-            this.btnEditEntry.Text = "Edit Entry";
+            this.btnEditEntry.Text = "Edit entry";
             this.btnEditEntry.Click += new System.EventHandler(this.btnEditEntry_Click);
             // 
             // btnDeleteEntry
@@ -198,7 +200,7 @@
             this.btnDeleteEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDeleteEntry.Name = "btnDeleteEntry";
             this.btnDeleteEntry.Size = new System.Drawing.Size(23, 22);
-            this.btnDeleteEntry.Text = "Delete Entry";
+            this.btnDeleteEntry.Text = "Delete entry";
             this.btnDeleteEntry.Click += new System.EventHandler(this.btnDeleteEntry_Click);
             // 
             // toolStripSeparator2
@@ -214,7 +216,7 @@
             this.btnCopyUsername.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopyUsername.Name = "btnCopyUsername";
             this.btnCopyUsername.Size = new System.Drawing.Size(23, 22);
-            this.btnCopyUsername.Text = "Copy Username";
+            this.btnCopyUsername.Text = "Copy username to clipboard";
             this.btnCopyUsername.Click += new System.EventHandler(this.btnCopyUsername_Click);
             // 
             // btnCopyPassword
@@ -225,7 +227,7 @@
             this.btnCopyPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopyPassword.Name = "btnCopyPassword";
             this.btnCopyPassword.Size = new System.Drawing.Size(23, 22);
-            this.btnCopyPassword.Text = "Copy Password";
+            this.btnCopyPassword.Text = "Copy password to clipboard";
             this.btnCopyPassword.Click += new System.EventHandler(this.btnCopyPassword_Click);
             // 
             // btnVisitLink
@@ -236,8 +238,19 @@
             this.btnVisitLink.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnVisitLink.Name = "btnVisitLink";
             this.btnVisitLink.Size = new System.Drawing.Size(23, 22);
-            this.btnVisitLink.Text = "Visit URL";
+            this.btnVisitLink.Text = "Open url in browser";
             this.btnVisitLink.Click += new System.EventHandler(this.btnVisitLink_Click);
+            // 
+            // btnViewNotes
+            // 
+            this.btnViewNotes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnViewNotes.Enabled = false;
+            this.btnViewNotes.Image = global::Prj_Padlockr.Properties.Resources.Notes;
+            this.btnViewNotes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnViewNotes.Name = "btnViewNotes";
+            this.btnViewNotes.Size = new System.Drawing.Size(23, 22);
+            this.btnViewNotes.Text = "View notes";
+            this.btnViewNotes.Click += new System.EventHandler(this.btnViewNotes_Click);
             // 
             // toolStripSeparator3
             // 
@@ -259,7 +272,7 @@
             this.txtBoxSearch.Enabled = false;
             this.txtBoxSearch.MaxLength = 255;
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(175, 25);
+            this.txtBoxSearch.Size = new System.Drawing.Size(155, 25);
             this.txtBoxSearch.TextChanged += new System.EventHandler(this.txtBoxSearch_TextChanged);
             // 
             // btnClearSearch
@@ -269,7 +282,7 @@
             this.btnClearSearch.Image = global::Prj_Padlockr.Properties.Resources.Clear;
             this.btnClearSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClearSearch.Name = "btnClearSearch";
-            this.btnClearSearch.Size = new System.Drawing.Size(23, 20);
+            this.btnClearSearch.Size = new System.Drawing.Size(23, 22);
             this.btnClearSearch.Text = "Clear Search";
             this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
@@ -296,8 +309,10 @@
             this.listBox.Enabled = false;
             this.listBox.Location = new System.Drawing.Point(12, 52);
             this.listBox.Name = "listBox";
+            this.listBox.ScrollAlwaysVisible = true;
             this.listBox.Size = new System.Drawing.Size(360, 316);
-            this.listBox.TabIndex = 4;
+            this.listBox.Sorted = true;
+            this.listBox.TabIndex = 0;
             this.listBox.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // saveDatabaseDialog
@@ -368,6 +383,7 @@
         private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.SaveFileDialog saveDatabaseDialog;
         private System.Windows.Forms.OpenFileDialog openDatabaseDialog;
+        private System.Windows.Forms.ToolStripButton btnViewNotes;
     }
 }
 

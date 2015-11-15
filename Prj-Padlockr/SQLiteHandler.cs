@@ -131,7 +131,7 @@ namespace Prj_Padlockr
                     conn.Open();
 
                     // Execute query against DB
-                    connCommand(conn, "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME nvarchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255));");
+                    connCommand(conn, "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME nvarchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255), NOTES ntext);");
                 }
                 catch
                 {
@@ -211,7 +211,7 @@ namespace Prj_Padlockr
         }
 
         // Insert new data into DB
-        public void InsertData(string s1, string s2, string s3, string s4)
+        public void InsertData(string s1, string s2, string s3, string s4, string s5)
         {
             lock (locker)
             {
@@ -224,7 +224,7 @@ namespace Prj_Padlockr
                     conn.Open();
 
                     // Execute query against DB
-                    connCommand(conn, "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK) VALUES('" + s1 + "', '" + s2 + "', '" + s3 + "', '" + s4 + "');");
+                    connCommand(conn, "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK, NOTES) VALUES('" + s1 + "', '" + s2 + "', '" + s3 + "', '" + s4 + "', '" + s5 + "');");
                 }
                 catch
                 {
@@ -239,7 +239,7 @@ namespace Prj_Padlockr
         }
 
         // Update data in DB
-        public void UpdateData(string oldAccName, string s1, string s2, string s3)
+        public void UpdateData(string oldAccName, string s1, string s2, string s3, string s4)
         {
             lock (locker)
             {
@@ -252,7 +252,7 @@ namespace Prj_Padlockr
                     conn.Open();
 
                     // Execute query against DB
-                    connCommand(conn, "UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "' WHERE ACC_NAME = '" + oldAccName + "';");
+                    connCommand(conn, "UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "', NOTES = '" + s4 + "' WHERE ACC_NAME = '" + oldAccName + "';");
                 }
                 catch
                 {

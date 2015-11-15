@@ -193,10 +193,30 @@ namespace Prj_Padlockr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Padlock {
+        internal static System.Drawing.Bitmap Notes {
             get {
-                object obj = ResourceManager.GetObject("Padlock", resourceCulture);
+                object obj = ResourceManager.GetObject("Notes", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap padlockr {
+            get {
+                object obj = ResourceManager.GetObject("padlockr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon padlockr_ico {
+            get {
+                object obj = ResourceManager.GetObject("padlockr_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

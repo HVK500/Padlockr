@@ -45,8 +45,7 @@
             this.btnUnlock.Location = new System.Drawing.Point(112, 76);
             this.btnUnlock.Name = "btnUnlock";
             this.btnUnlock.Size = new System.Drawing.Size(178, 23);
-            this.btnUnlock.TabIndex = 0;
-            this.btnUnlock.TabStop = false;
+            this.btnUnlock.TabIndex = 1;
             this.btnUnlock.Text = "Unlock";
             this.btnUnlock.UseVisualStyleBackColor = true;
             // 
@@ -56,8 +55,7 @@
             this.btnCancel.Location = new System.Drawing.Point(296, 76);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.TabStop = false;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -66,8 +64,7 @@
             this.maskedMasterTextBox.Location = new System.Drawing.Point(112, 50);
             this.maskedMasterTextBox.Name = "maskedMasterTextBox";
             this.maskedMasterTextBox.Size = new System.Drawing.Size(241, 20);
-            this.maskedMasterTextBox.TabIndex = 1;
-            this.maskedMasterTextBox.TabStop = false;
+            this.maskedMasterTextBox.TabIndex = 0;
             this.maskedMasterTextBox.UseSystemPasswordChar = true;
             this.maskedMasterTextBox.TextChanged += new System.EventHandler(this.maskedMasterTextBox_TextChanged);
             // 

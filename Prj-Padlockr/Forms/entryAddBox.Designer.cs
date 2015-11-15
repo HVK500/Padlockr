@@ -43,16 +43,17 @@
             this.btnLinkPaste = new System.Windows.Forms.Button();
             this.lblLinkVal = new System.Windows.Forms.Label();
             this.btnClearLink = new System.Windows.Forms.Button();
+            this.notesTxtBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(360, 118);
+            this.btnCancel.Location = new System.Drawing.Point(361, 289);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.TabStop = false;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -60,11 +61,10 @@
             // 
             this.btnSubmit.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSubmit.Enabled = false;
-            this.btnSubmit.Location = new System.Drawing.Point(279, 118);
+            this.btnSubmit.Location = new System.Drawing.Point(280, 289);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 0;
-            this.btnSubmit.TabStop = false;
+            this.btnSubmit.TabIndex = 5;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             // 
@@ -82,8 +82,7 @@
             this.accNameTxtBox.Location = new System.Drawing.Point(99, 12);
             this.accNameTxtBox.Name = "accNameTxtBox";
             this.accNameTxtBox.Size = new System.Drawing.Size(336, 20);
-            this.accNameTxtBox.TabIndex = 2;
-            this.accNameTxtBox.TabStop = false;
+            this.accNameTxtBox.TabIndex = 0;
             this.accNameTxtBox.TextChanged += new System.EventHandler(this.accNameTxtBox_TextChanged);
             // 
             // label2
@@ -101,8 +100,7 @@
             this.userNameTxtBox.Location = new System.Drawing.Point(99, 38);
             this.userNameTxtBox.Name = "userNameTxtBox";
             this.userNameTxtBox.Size = new System.Drawing.Size(336, 20);
-            this.userNameTxtBox.TabIndex = 2;
-            this.userNameTxtBox.TabStop = false;
+            this.userNameTxtBox.TabIndex = 1;
             this.userNameTxtBox.TextChanged += new System.EventHandler(this.userNameTxtBox_TextChanged);
             // 
             // label3
@@ -120,8 +118,7 @@
             this.passMaskedTextBox.Location = new System.Drawing.Point(99, 65);
             this.passMaskedTextBox.Name = "passMaskedTextBox";
             this.passMaskedTextBox.Size = new System.Drawing.Size(244, 20);
-            this.passMaskedTextBox.TabIndex = 3;
-            this.passMaskedTextBox.TabStop = false;
+            this.passMaskedTextBox.TabIndex = 2;
             this.passMaskedTextBox.UseSystemPasswordChar = true;
             this.passMaskedTextBox.TextChanged += new System.EventHandler(this.passMaskedBox_TextChanged);
             // 
@@ -140,7 +137,7 @@
             this.linkTxtBox.Name = "linkTxtBox";
             this.linkTxtBox.ReadOnly = true;
             this.linkTxtBox.Size = new System.Drawing.Size(261, 20);
-            this.linkTxtBox.TabIndex = 2;
+            this.linkTxtBox.TabIndex = 0;
             this.linkTxtBox.TabStop = false;
             this.linkTxtBox.TextChanged += new System.EventHandler(this.linkTxtBox_TextChanged);
             // 
@@ -174,8 +171,7 @@
             this.btnLinkPaste.Location = new System.Drawing.Point(380, 91);
             this.btnLinkPaste.Name = "btnLinkPaste";
             this.btnLinkPaste.Size = new System.Drawing.Size(55, 22);
-            this.btnLinkPaste.TabIndex = 5;
-            this.btnLinkPaste.TabStop = false;
+            this.btnLinkPaste.TabIndex = 3;
             this.btnLinkPaste.Text = "Paste";
             this.btnLinkPaste.UseVisualStyleBackColor = true;
             this.btnLinkPaste.Click += new System.EventHandler(this.btnLinkPaste_Click);
@@ -202,12 +198,31 @@
             this.btnClearLink.UseVisualStyleBackColor = true;
             this.btnClearLink.Click += new System.EventHandler(this.btnClearLink_Click);
             // 
+            // notesTxtBox
+            // 
+            this.notesTxtBox.Location = new System.Drawing.Point(99, 119);
+            this.notesTxtBox.Multiline = true;
+            this.notesTxtBox.Name = "notesTxtBox";
+            this.notesTxtBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.notesTxtBox.Size = new System.Drawing.Size(336, 164);
+            this.notesTxtBox.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(55, 122);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Notes:";
+            // 
             // entryAddBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(448, 153);
+            this.ClientSize = new System.Drawing.Size(448, 327);
+            this.Controls.Add(this.notesTxtBox);
             this.Controls.Add(this.btnClearLink);
             this.Controls.Add(this.lblLinkVal);
             this.Controls.Add(this.btnLinkPaste);
@@ -217,6 +232,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.linkTxtBox);
             this.Controls.Add(this.userNameTxtBox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.accNameTxtBox);
@@ -262,5 +278,7 @@
             InitializeComponent();
             this.liteDB = liteDB;
         }
+        private System.Windows.Forms.Label label5;
+        protected internal System.Windows.Forms.TextBox notesTxtBox;
     }
 }

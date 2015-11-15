@@ -210,7 +210,7 @@ namespace Prj_Padlockr
             entryAddBox ne = new entryAddBox(liteDB);
             if (ne.ShowDialog() == DialogResult.OK)
             {
-                liteDB.InsertData(ne.accNameTxtBox.Text, ne.userNameTxtBox.Text, ne.passMaskedTextBox.Text, ne.linkTxtBox.Text);
+                liteDB.InsertData(ne.accNameTxtBox.Text, ne.userNameTxtBox.Text, ne.passMaskedTextBox.Text, ne.linkTxtBox.Text, ne.notesTxtBox.Text);
             }
 
             populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
@@ -227,22 +227,27 @@ namespace Prj_Padlockr
                 ee.Text = "Edit Entry";
 
                 //TODO: Optimise!
-                DataTable dt = liteDB.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+                DataTable dt = liteDB.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
                 if (dt.Rows.Count != 0)
                 {
                     DataRow dr = dt.Rows[dt.Rows.Count - 1];
                     string oldAccName = dr["ACC_NAME"].ToString();
+
                     // Print out the read information to the Edit Entry Box
                     ee.accNameTxtBox.Text = oldAccName;
                     ee.userNameTxtBox.Text = dr["USER_NAME"].ToString();
                     ee.passMaskedTextBox.Text = dr["PASS"].ToString();
                     ee.linkTxtBox.Text = dr["LINK"].ToString();
+                    ee.notesTxtBox.Text = dr["NOTES"].ToString();
 
                     if (ee.ShowDialog() == DialogResult.OK)
                     {
                         // Capture the changes and send them to the DB
-                        liteDB.UpdateData(oldAccName, ee.userNameTxtBox.Text, ee.passMaskedTextBox.Text, ee.linkTxtBox.Text);
+                        liteDB.UpdateData(oldAccName, ee.userNameTxtBox.Text, ee.passMaskedTextBox.Text, ee.linkTxtBox.Text, ee.notesTxtBox.Text);
                         populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+
+                        listBox.SelectedIndex = -1;
+                        listBox_SelectedIndexChanged(sender, e);
                     }
                 }
             }
@@ -324,6 +329,14 @@ namespace Prj_Padlockr
                 {
                     btnVisitLink.Enabled = false;
                 }
+                if (String.IsNullOrWhiteSpace(getColData("NOTES")) == false)
+                {
+                    btnViewNotes.Enabled = true;
+                }
+                else
+                {
+                    btnViewNotes.Enabled = false;
+                }
                 
             }
             else if (listBox.SelectedIndex == -1)
@@ -333,6 +346,18 @@ namespace Prj_Padlockr
                 btnCopyPassword.Enabled = false;
                 btnCopyUsername.Enabled = false;
                 btnVisitLink.Enabled = false;
+                btnViewNotes.Enabled = false;
+            }
+        }
+
+        // Open a read-only dialog to view the saved notes
+        private void btnViewNotes_Click(object sender, EventArgs e)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                viewNotesBox vn = new viewNotesBox();
+                vn.notesTxtBox.Text = getColData("NOTES");
+                vn.ShowDialog();
             }
         }
 
@@ -343,7 +368,6 @@ namespace Prj_Padlockr
             {
                 Process.Start(getColData("LINK"));
             }
-
         }
 
         // Copies the Password of the selected DB item to the clipboard
@@ -378,6 +402,7 @@ namespace Prj_Padlockr
             Text = "Padlockr";
             btnClearSearch.Enabled = false;
             lblSpyGlass.Enabled = false;
+            btnViewNotes.Enabled = false;
             btnVisitLink.Enabled = false;
             btnCopyPassword.Enabled = false;
             btnCopyUsername.Enabled = false;
@@ -416,8 +441,16 @@ namespace Prj_Padlockr
                 }
 
                 // Enable controls - if there is data to edit and search
-                lblSpyGlass.Enabled = true;
-                txtBoxSearch.Enabled = true;
+                if (dt.Rows.Count > 1 )
+                {
+                    lblSpyGlass.Enabled = true;
+                    txtBoxSearch.Enabled = true;
+                }
+                else if (dt.Rows.Count == 1 && String.IsNullOrWhiteSpace(txtBoxSearch.Text) == true)
+                {
+                    lblSpyGlass.Enabled = false;
+                    txtBoxSearch.Enabled = false;
+                }
             }
 
             // Enable controls

@@ -62,8 +62,7 @@
             this.btnCancel.Location = new System.Drawing.Point(313, 133);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.TabStop = false;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -75,7 +74,6 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 3;
-            this.btnAccept.TabStop = false;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
@@ -150,8 +148,7 @@
             this.maskedOldBox.Location = new System.Drawing.Point(135, 28);
             this.maskedOldBox.Name = "maskedOldBox";
             this.maskedOldBox.Size = new System.Drawing.Size(236, 20);
-            this.maskedOldBox.TabIndex = 7;
-            this.maskedOldBox.TabStop = false;
+            this.maskedOldBox.TabIndex = 0;
             this.maskedOldBox.UseSystemPasswordChar = true;
             this.maskedOldBox.TextChanged += new System.EventHandler(this.maskedOldBox_TextChanged);
             // 
@@ -161,8 +158,7 @@
             this.maskedNewBox.Location = new System.Drawing.Point(135, 67);
             this.maskedNewBox.Name = "maskedNewBox";
             this.maskedNewBox.Size = new System.Drawing.Size(236, 20);
-            this.maskedNewBox.TabIndex = 7;
-            this.maskedNewBox.TabStop = false;
+            this.maskedNewBox.TabIndex = 1;
             this.maskedNewBox.UseSystemPasswordChar = true;
             this.maskedNewBox.TextChanged += new System.EventHandler(this.maskedNewBox_TextChanged);
             // 
@@ -172,8 +168,7 @@
             this.maskedRnewBox.Location = new System.Drawing.Point(135, 106);
             this.maskedRnewBox.Name = "maskedRnewBox";
             this.maskedRnewBox.Size = new System.Drawing.Size(236, 20);
-            this.maskedRnewBox.TabIndex = 7;
-            this.maskedRnewBox.TabStop = false;
+            this.maskedRnewBox.TabIndex = 2;
             this.maskedRnewBox.UseSystemPasswordChar = true;
             this.maskedRnewBox.TextChanged += new System.EventHandler(this.maskedRnewBox_TextChanged);
             // 
@@ -182,7 +177,7 @@
             this.lblOpassValidation.AutoSize = true;
             this.lblOpassValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lblOpassValidation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblOpassValidation.Location = new System.Drawing.Point(212, 13);
+            this.lblOpassValidation.Location = new System.Drawing.Point(212, 12);
             this.lblOpassValidation.Name = "lblOpassValidation";
             this.lblOpassValidation.Size = new System.Drawing.Size(0, 13);
             this.lblOpassValidation.TabIndex = 8;
@@ -192,7 +187,7 @@
             this.lblNewPassValidation.AutoSize = true;
             this.lblNewPassValidation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.lblNewPassValidation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblNewPassValidation.Location = new System.Drawing.Point(218, 52);
+            this.lblNewPassValidation.Location = new System.Drawing.Point(12, 125);
             this.lblNewPassValidation.Name = "lblNewPassValidation";
             this.lblNewPassValidation.Size = new System.Drawing.Size(0, 13);
             this.lblNewPassValidation.TabIndex = 8;
