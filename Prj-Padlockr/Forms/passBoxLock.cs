@@ -61,7 +61,7 @@ namespace Prj_Padlockr
                 btnMaskWatcher2.Enabled = true;
                 if (firstMaskedTextBox.Text != secondMaskedTextBox.Text)
                 {
-                    lblValidation.Text = "Password does not match";
+                    lblValidation.Text = "Does not match!";
                 }
                 else
                 {

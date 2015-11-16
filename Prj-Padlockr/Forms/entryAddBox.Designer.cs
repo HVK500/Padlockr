@@ -38,13 +38,13 @@
             this.passMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.linkTxtBox = new System.Windows.Forms.TextBox();
-            this.btnMaskWatcher = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.btnLinkPaste = new System.Windows.Forms.Button();
             this.lblLinkVal = new System.Windows.Forms.Label();
             this.btnClearLink = new System.Windows.Forms.Button();
             this.notesTxtBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnMaskWatcher = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -141,19 +141,6 @@
             this.linkTxtBox.TabStop = false;
             this.linkTxtBox.TextChanged += new System.EventHandler(this.linkTxtBox_TextChanged);
             // 
-            // btnMaskWatcher
-            // 
-            this.btnMaskWatcher.Enabled = false;
-            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.Eye;
-            this.btnMaskWatcher.Location = new System.Drawing.Point(343, 64);
-            this.btnMaskWatcher.Name = "btnMaskWatcher";
-            this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);
-            this.btnMaskWatcher.TabIndex = 4;
-            this.btnMaskWatcher.TabStop = false;
-            this.btnMaskWatcher.UseVisualStyleBackColor = true;
-            this.btnMaskWatcher.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseDown);
-            this.btnMaskWatcher.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnMaskWatcher_MouseUp);
-            // 
             // btnGenerate
             // 
             this.btnGenerate.Enabled = false;
@@ -216,18 +203,29 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Notes:";
             // 
+            // btnMaskWatcher
+            // 
+            this.btnMaskWatcher.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.Eye;
+            this.btnMaskWatcher.Location = new System.Drawing.Point(343, 64);
+            this.btnMaskWatcher.Name = "btnMaskWatcher";
+            this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);
+            this.btnMaskWatcher.TabIndex = 8;
+            this.btnMaskWatcher.UseVisualStyleBackColor = true;
+            this.btnMaskWatcher.CheckedChanged += new System.EventHandler(this.btnMaskWatcher_CheckedChanged);
+            // 
             // entryAddBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(448, 327);
+            this.Controls.Add(this.btnMaskWatcher);
             this.Controls.Add(this.notesTxtBox);
             this.Controls.Add(this.btnClearLink);
             this.Controls.Add(this.lblLinkVal);
             this.Controls.Add(this.btnLinkPaste);
             this.Controls.Add(this.btnGenerate);
-            this.Controls.Add(this.btnMaskWatcher);
             this.Controls.Add(this.passMaskedTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.linkTxtBox);
@@ -265,7 +263,6 @@
         protected internal System.Windows.Forms.TextBox userNameTxtBox;
         protected internal System.Windows.Forms.MaskedTextBox passMaskedTextBox;
         protected internal System.Windows.Forms.TextBox linkTxtBox;
-        private System.Windows.Forms.Button btnMaskWatcher;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
@@ -280,5 +277,6 @@
         }
         private System.Windows.Forms.Label label5;
         protected internal System.Windows.Forms.TextBox notesTxtBox;
+        private System.Windows.Forms.CheckBox btnMaskWatcher;
     }
 }

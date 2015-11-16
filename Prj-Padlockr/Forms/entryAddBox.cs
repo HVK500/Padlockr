@@ -20,16 +20,6 @@ namespace Prj_Padlockr
             }
         }
 
-        private void btnMaskWatcher_MouseDown(object sender, MouseEventArgs e)
-        {
-            passMaskedTextBox.UseSystemPasswordChar = false;
-        }
-
-        private void btnMaskWatcher_MouseUp(object sender, MouseEventArgs e)
-        {
-            passMaskedTextBox.UseSystemPasswordChar = true;
-        }
-
         private void passMaskedBox_TextChanged(object sender, System.EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
@@ -41,6 +31,18 @@ namespace Prj_Padlockr
             {
                 btnMaskWatcher.Enabled = false;
                 btnSubmit.Enabled = false;
+            }
+        }
+
+        private void btnMaskWatcher_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btnMaskWatcher.Checked == false)
+            {
+                passMaskedTextBox.UseSystemPasswordChar = true;
+            }
+            else if (btnMaskWatcher.Checked == true)
+            {
+                passMaskedTextBox.UseSystemPasswordChar = false;
             }
         }
 
@@ -165,6 +167,5 @@ namespace Prj_Padlockr
             }
             
         }
-
     }
 }

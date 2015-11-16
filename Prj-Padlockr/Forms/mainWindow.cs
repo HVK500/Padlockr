@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.IO;
@@ -210,9 +211,11 @@ namespace Prj_Padlockr
             entryAddBox ne = new entryAddBox(liteDB);
             if (ne.ShowDialog() == DialogResult.OK)
             {
-                liteDB.InsertData(ne.accNameTxtBox.Text, ne.userNameTxtBox.Text, ne.passMaskedTextBox.Text, ne.linkTxtBox.Text, ne.notesTxtBox.Text);
+                // Insert data in to the DB
+                liteDB.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
             }
 
+            // Repop the listbox
             populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
         }
@@ -243,7 +246,7 @@ namespace Prj_Padlockr
                     if (ee.ShowDialog() == DialogResult.OK)
                     {
                         // Capture the changes and send them to the DB
-                        liteDB.UpdateData(oldAccName, ee.userNameTxtBox.Text, ee.passMaskedTextBox.Text, ee.linkTxtBox.Text, ee.notesTxtBox.Text);
+                        liteDB.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
                         populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                         listBox.SelectedIndex = -1;
@@ -457,6 +460,50 @@ namespace Prj_Padlockr
             btnNewEntry.Enabled = true;
             listBox.Enabled = true;
             listBox.SelectedIndex = -1;
+        }
+
+        // Handles the doubling up of the apostrophe's in any password to prepare for DB insertion
+        private string apoCleansing(string pass)
+        {
+            // Gets stores the password in the p
+            string p = pass;
+            // Counts the number of apostrophe's there are in the pass string
+            int c = p.Split('\'').Length - 1;
+            
+            if (c != 0)
+            {
+                // New list to convert to an array to cycle through
+                List<int> pos = new List<int>();
+                int temp = 0;
+
+                // Assembles the list of the index postions of the apostrophe's
+                for (int i = 0; i <= c - 1; i++)
+                {
+                    pos.Add(p.IndexOf('\'', temp));
+                    temp = p.IndexOf('\'', temp) + 1;
+                }
+
+                // Converts the list to an array
+                int[] n = pos.ToArray();
+
+                // Cycle through the array and double up the apostrophe's - because SQLite uses the second apostrophe as an escape symbol
+                for (int i = 0; i <= n.Length - 1; i++)
+                {
+                    if (i != 0)
+                    {
+                        // Apostrophe doubling up logic for all apostrophe's not in index 0
+                        p = p.Insert(n[i] + i, "'");
+                    }
+                    else
+                    {
+                        // Initial doubling at index 0
+                        p = p.Insert(n[0], "'");
+                    }
+                }
+            }
+
+            // Return the resulting password
+            return p;
         }
     }
 }
