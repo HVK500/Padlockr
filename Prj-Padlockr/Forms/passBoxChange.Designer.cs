@@ -239,13 +239,13 @@
         protected internal System.Windows.Forms.MaskedTextBox maskedRnewBox;
         protected internal System.Windows.Forms.Label lblOpassValidation;
         protected internal System.Windows.Forms.Label lblNewPassValidation;
-        private SqLiteHandler liteDB;
+        private IPadlockrDbContext dbContext;
 
-        // Parse the liteDB object through the passBoxChange dialog
-        public passBoxChange(SqLiteHandler liteDB)
+        // Parse the dbContext object through the passBoxChange dialog
+        public passBoxChange(IPadlockrDbContext dbContext)
         {
             InitializeComponent();
-            this.liteDB = liteDB;
+            this.dbContext = dbContext;
         }
     }
 }

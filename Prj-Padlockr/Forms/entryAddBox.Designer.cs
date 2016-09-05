@@ -267,13 +267,13 @@
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
-        private SqLiteHandler liteDB;
+        private IPadlockrDbContext dbContext;
 
-        // Parse the liteDB object to the dialog window
-        public entryAddBox(SqLiteHandler liteDB)
+        // Parse the dbContext object to the dialog window
+        public entryAddBox(IPadlockrDbContext dbContext)
         {
             InitializeComponent();
-            this.liteDB = liteDB;
+            this.dbContext = dbContext;
         }
         private System.Windows.Forms.Label label5;
         protected internal System.Windows.Forms.TextBox notesTxtBox;

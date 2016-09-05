@@ -10,15 +10,15 @@ namespace Prj_Padlockr.Forms
 {
     public partial class MainWindow : Form
     {
+        // - Create the instance that controls all the DB interactions
+        internal IPadlockrDbContext DbContext;
 
         public MainWindow()
         {
             InitializeComponent();
+            DbContext = new PadlockrDbContext(new SqliteWrapper());
         }
-
-        // - Create the instance that controls all the DB interactions
-        internal SqLiteHandler LiteDb = new SqLiteHandler();
-
+        
         private void mainWindow_Load(object sender, EventArgs e)
         {
             // Display current version
@@ -44,11 +44,11 @@ namespace Prj_Padlockr.Forms
                             if (pbU.ShowDialog() == DialogResult.OK)
                             {
                                 // Sets path and password
-                                LiteDb.DbUnlock(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
+                                DbContext.SetConnectionStrings(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
                                 // Check if it is the correct password
-                                if (LiteDb.PassCheck() == true)
+                                if (DbContext.PassCheck())
                                 {
-                                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                     // Enable the menu controls
                                     menuItemChangeMasterPassword.Enabled = true;
                                     // Disabled because the open DB is the default already
@@ -83,7 +83,7 @@ namespace Prj_Padlockr.Forms
 
         private void menuItemExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //TODO: When DB is opened or created and there are no entries disable the listbox
@@ -95,7 +95,7 @@ namespace Prj_Padlockr.Forms
                 // Reset controls from the previously opened DB
                 if (listBox.Items.Count != 0)
                 {
-                    initializeMainWindow();
+                    InitializeMainWindow();
                 }
 
                 // Set the DB directory to create and open
@@ -106,7 +106,7 @@ namespace Prj_Padlockr.Forms
                 if (pbL.ShowDialog() == DialogResult.OK)
                 {
                     // Sets the DB Password and creates the PDB Table
-                    LiteDb.InitializeDb(dbDir, pbL.firstMaskedTextBox.Text);
+                    DbContext.InitializeDb(dbDir, pbL.firstMaskedTextBox.Text);
                     if (MessageBox.Show("Would you like to set the new database to your default?", "Set Default Database", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //Make the new DB the default
@@ -122,7 +122,7 @@ namespace Prj_Padlockr.Forms
                     }
 
                     // Open the brand new database (empty)
-                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                     // Change the title of the main window to display the name of the open DB
                     Text = "Padlockr - " + dbDir;
                 }
@@ -131,14 +131,13 @@ namespace Prj_Padlockr.Forms
 
         private void menuItemOpenDatabase_Click(object sender, EventArgs e)
         {
-
             // Open an exsisting DB through a file browser
             if (openDatabaseDialog.ShowDialog() == DialogResult.OK)
             {
                 // Reset controls from the previously opened DB
                 if (listBox.Items.Count != 0)
                 {
-                    initializeMainWindow();
+                    InitializeMainWindow();
                 }
 
                 var pbU = new passBoxUnlock();
@@ -155,11 +154,11 @@ namespace Prj_Padlockr.Forms
                         if (pbU.ShowDialog() == DialogResult.OK)
                         {
                             // Sets path and password
-                            LiteDb.DbUnlock(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
+                            DbContext.SetConnectionStrings(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
 
-                            if (LiteDb.PassCheck() == true)
+                            if (DbContext.PassCheck())
                             {
-                                PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                 // Enable the menu controls
                                 menuItemChangeMasterPassword.Enabled = true;
                                 Text = "Padlockr - " + openDatabaseDialog.FileName;
@@ -198,7 +197,7 @@ namespace Prj_Padlockr.Forms
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
             // Change your DB Master password
-            passBoxChange pBc = new passBoxChange(LiteDb);
+            var pBc = new passBoxChange(DbContext);
             if (pBc.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Master password has been successfully changed.", "Master Password Changed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -208,15 +207,15 @@ namespace Prj_Padlockr.Forms
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
             // Add new enties in to the PDB Table of the open DB - (Added constructor to pass the liteDB object through)
-            entryAddBox ne = new entryAddBox(LiteDb);
+            var ne = new entryAddBox(DbContext);
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
-                LiteDb.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
+                DbContext.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
             }
 
             // Repop the listbox
-            PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
         }
 
@@ -225,12 +224,12 @@ namespace Prj_Padlockr.Forms
             // Edit enties in to the PDB Table of the open DB
             if (listBox.SelectedIndex != -1)
             {
-                entryAddBox ee = new entryAddBox(LiteDb);
+                var ee = new entryAddBox(DbContext);
                 // Change the title of the dialog to "Edit"
                 ee.Text = "Edit Entry";
 
                 //TODO: Optimise!
-                var dt = LiteDb.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+                var dt = DbContext.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
                 if (dt.Rows.Count != 0)
                 {
                     var dr = dt.Rows[dt.Rows.Count - 1];
@@ -246,8 +245,8 @@ namespace Prj_Padlockr.Forms
                     if (ee.ShowDialog() == DialogResult.OK)
                     {
                         // Capture the changes and send them to the DB
-                        LiteDb.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
-                        PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                        DbContext.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
+                        PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                         listBox.SelectedIndex = -1;
                         listBox_SelectedIndexChanged(sender, e);
@@ -264,8 +263,8 @@ namespace Prj_Padlockr.Forms
                 var sf = listBox.SelectedItem.ToString();
                 if (MessageBox.Show("Permanently delete entry \"" + sf + "\"?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    LiteDb.DeleteData(sf);
-                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    DbContext.DeleteData(sf);
+                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                     if (listBox.Items.Count <= 1)
                     {
@@ -294,16 +293,16 @@ namespace Prj_Padlockr.Forms
         // Handles the search feature
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = null;
+            DataTable dt;
 
             if (string.IsNullOrWhiteSpace(txtBoxSearch.Text) == false)
             {
-                dt = LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
+                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
                 btnClearSearch.Enabled = true;
             }
             else
             {
-                dt = LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;");
+                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;");
                 btnClearSearch.Enabled = false;
             }
 
@@ -324,7 +323,7 @@ namespace Prj_Padlockr.Forms
                 btnCopyUsername.Enabled = true;
 
                 // Check whether the selected item has a link saved
-                if (string.IsNullOrWhiteSpace(getColData("LINK")) == false)
+                if (string.IsNullOrWhiteSpace(GetColData("LINK")) == false)
                 {
                     btnVisitLink.Enabled = true;
                 }
@@ -332,7 +331,7 @@ namespace Prj_Padlockr.Forms
                 {
                     btnVisitLink.Enabled = false;
                 }
-                if (string.IsNullOrWhiteSpace(getColData("NOTES")) == false)
+                if (string.IsNullOrWhiteSpace(GetColData("NOTES")) == false)
                 {
                     btnViewNotes.Enabled = true;
                 }
@@ -362,7 +361,7 @@ namespace Prj_Padlockr.Forms
                 {
                     notesTxtBox =
                     {
-                        Text = getColData("NOTES")
+                        Text = GetColData("NOTES")
                     }
                 };
 
@@ -375,7 +374,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Process.Start(getColData("LINK"));
+                Process.Start(GetColData("LINK"));
             }
         }
 
@@ -384,7 +383,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Clipboard.SetText(getColData("PASS"));
+                Clipboard.SetText(GetColData("PASS"));
             }
         }
 
@@ -393,7 +392,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Clipboard.SetText(getColData("USER_NAME"));
+                Clipboard.SetText(GetColData("USER_NAME"));
             }
         }
 
@@ -404,7 +403,7 @@ namespace Prj_Padlockr.Forms
         }
 
         // Resets the controls back to the initial window
-        private void initializeMainWindow()
+        private void InitializeMainWindow()
         {
             listBox.Items.Clear();
             listBox.Enabled = false;
@@ -425,9 +424,9 @@ namespace Prj_Padlockr.Forms
         }
 
         //TODO: Opitimise! Retrieve specific column data
-        private string getColData(string field)
+        private string GetColData(string field)
         {
-            var dt = LiteDb.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+            var dt = DbContext.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
             var dr = dt.Rows[dt.Rows.Count - 1];
 
             return dr[field].ToString();
@@ -455,7 +454,7 @@ namespace Prj_Padlockr.Forms
                     lblSpyGlass.Enabled = true;
                     txtBoxSearch.Enabled = true;
                 }
-                else if (dt.Rows.Count == 1 && String.IsNullOrWhiteSpace(txtBoxSearch.Text) == true)
+                else if (dt.Rows.Count == 1 && string.IsNullOrWhiteSpace(txtBoxSearch.Text))
                 {
                     lblSpyGlass.Enabled = false;
                     txtBoxSearch.Enabled = false;
