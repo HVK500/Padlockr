@@ -247,8 +247,8 @@
     <None Include="Resources\padlockr-ico.ico" />
     <None Include="Resources\padlockr.png" />
     <None Include="Resources\Notes.png" />
-    <EmbeddedResource Include="costura32\SQLite.Interop.dll" />
-    <EmbeddedResource Include="costura64\SQLite.Interop.dll" />
+    <Content Include="costura32\SQLite.Interop.dll" />
+    <Content Include="costura64\SQLite.Interop.dll" />
     <Content Include="FodyWeavers.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
