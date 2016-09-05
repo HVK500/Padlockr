@@ -46,15 +46,7 @@ C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Pa
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.exe
 C:\Users\HVK\Dropbox\Personal\Documents\Programming projects\Git\padlockr\Prj-Padlockr\obj\Debug\Padlockr.pdb
 E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csprojResolveAssemblyReference.cache
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.aboutBox.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.entryAddBox.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.generatePassBox.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.mainWindow.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxChange.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxLock.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.passBoxUnlock.resources
 E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Properties.Resources.resources
-E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.viewNotesBox.resources
 E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj-Padlockr.csproj.GenerateResource.Cache
 E:\WRK\padlockr\Prj-Padlockr\bin\Debug\Padlockr.exe.config
 E:\WRK\padlockr\Prj-Padlockr\bin\Debug\Padlockr.exe
@@ -69,3 +61,11 @@ E:\WRK\padlockr\Prj-Padlockr\bin\Debug\EntityFramework.SqlServer.xml
 E:\WRK\padlockr\Prj-Padlockr\bin\Debug\System.Data.SQLite.xml
 E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Padlockr.exe
 E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Padlockr.pdb
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.aboutBox.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.entryAddBox.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.generatePassBox.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.MainWindow.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.passBoxChange.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.passBoxLock.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.passBoxUnlock.resources
+E:\WRK\padlockr\Prj-Padlockr\obj\Debug\Prj_Padlockr.Forms.viewNotesBox.resources

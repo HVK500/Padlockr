@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 
-namespace Prj_Padlockr
+namespace Prj_Padlockr.Forms
 {
     public partial class entryAddBox : Form
     {

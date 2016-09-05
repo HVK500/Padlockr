@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr
+﻿namespace Prj_Padlockr.Forms
 {
     partial class entryAddBox
     {
@@ -267,10 +267,10 @@
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
-        private SQLiteHandler liteDB;
+        private SqLiteHandler liteDB;
 
         // Parse the liteDB object to the dialog window
-        public entryAddBox(SQLiteHandler liteDB)
+        public entryAddBox(SqLiteHandler liteDB)
         {
             InitializeComponent();
             this.liteDB = liteDB;

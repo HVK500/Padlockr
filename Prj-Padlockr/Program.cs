@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Reflection;
+using Prj_Padlockr.Forms;
 
 namespace Prj_Padlockr
 {
@@ -14,7 +14,7 @@ namespace Prj_Padlockr
          {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new mainWindow());
+            Application.Run(new MainWindow());
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Prj_Padlockr
+namespace Prj_Padlockr.Forms
 {
     public partial class passBoxChange : Form
     {
@@ -81,7 +81,7 @@ namespace Prj_Padlockr
         {
             if (DialogResult.ToString() != "Cancel")
             {
-                if (liteDB.passCheck(maskedOldBox.Text) == true)
+                if (liteDB.PassCheck(maskedOldBox.Text) == true)
                 {
                     lblOpassValidation.Text = "";
                     

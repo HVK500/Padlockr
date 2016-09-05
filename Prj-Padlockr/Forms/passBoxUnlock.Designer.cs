@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr
+﻿namespace Prj_Padlockr.Forms
 {
     partial class passBoxUnlock
     {

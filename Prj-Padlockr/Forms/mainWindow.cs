@@ -6,18 +6,18 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace Prj_Padlockr
+namespace Prj_Padlockr.Forms
 {
-    public partial class mainWindow : Form
+    public partial class MainWindow : Form
     {
 
-        public mainWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
 
         // - Create the instance that controls all the DB interactions
-        internal SQLiteHandler liteDB = new SQLiteHandler();
+        internal SqLiteHandler LiteDb = new SqLiteHandler();
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
@@ -26,15 +26,15 @@ namespace Prj_Padlockr
 
             //TODO: Optimise!
             // Show master password dialog if there is a default DB set
-            if (String.IsNullOrWhiteSpace(Properties.Settings.Default.defaultDBpath) == false)
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.defaultDBpath) == false)
             {
-                if (File.Exists(Properties.Settings.Default.defaultDBpath) == true)
+                if (File.Exists(Properties.Settings.Default.defaultDBpath))
                 {
-                    passBoxUnlock pbU = new passBoxUnlock();
-                    bool v = false;
+                    var pbU = new passBoxUnlock();
+                    var v = false;
                     while (v == false)
                     {
-                        if (String.IsNullOrWhiteSpace(pbU.maskedMasterTextBox.Text) == false)
+                        if (string.IsNullOrWhiteSpace(pbU.maskedMasterTextBox.Text) == false)
                         {
                             pbU.maskedMasterTextBox.Text = "";
                             pbU.lblPassVal.Text = "Password incorrect!";
@@ -44,11 +44,11 @@ namespace Prj_Padlockr
                             if (pbU.ShowDialog() == DialogResult.OK)
                             {
                                 // Sets path and password
-                                liteDB.DBUnlock(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
+                                LiteDb.DbUnlock(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
                                 // Check if it is the correct password
-                                if (liteDB.passCheck() == true)
+                                if (LiteDb.PassCheck() == true)
                                 {
-                                    populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                     // Enable the menu controls
                                     menuItemChangeMasterPassword.Enabled = true;
                                     // Disabled because the open DB is the default already
@@ -99,14 +99,14 @@ namespace Prj_Padlockr
                 }
 
                 // Set the DB directory to create and open
-                string dbDir = saveDatabaseDialog.FileName;
+                var dbDir = saveDatabaseDialog.FileName;
                 
                 // Create a new passBoxLock instance to parse the password back from the firstMaskedTextBox
-                passBoxLock pbL = new passBoxLock();
+                var pbL = new passBoxLock();
                 if (pbL.ShowDialog() == DialogResult.OK)
                 {
                     // Sets the DB Password and creates the PDB Table
-                    liteDB.InitializeDB(dbDir, pbL.firstMaskedTextBox.Text);
+                    LiteDb.InitializeDb(dbDir, pbL.firstMaskedTextBox.Text);
                     if (MessageBox.Show("Would you like to set the new database to your default?", "Set Default Database", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //Make the new DB the default
@@ -122,7 +122,7 @@ namespace Prj_Padlockr
                     }
 
                     // Open the brand new database (empty)
-                    populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                     // Change the title of the main window to display the name of the open DB
                     Text = "Padlockr - " + dbDir;
                 }
@@ -141,11 +141,11 @@ namespace Prj_Padlockr
                     initializeMainWindow();
                 }
 
-                passBoxUnlock pbU = new passBoxUnlock();
-                bool v = false;
+                var pbU = new passBoxUnlock();
+                var v = false;
                 while (v == false)
                 {
-                    if (String.IsNullOrWhiteSpace(pbU.maskedMasterTextBox.Text) == false)
+                    if (string.IsNullOrWhiteSpace(pbU.maskedMasterTextBox.Text) == false)
                     {
                         pbU.maskedMasterTextBox.Text = "";
                         pbU.lblPassVal.Text = "Password incorrect!";
@@ -155,11 +155,11 @@ namespace Prj_Padlockr
                         if (pbU.ShowDialog() == DialogResult.OK)
                         {
                             // Sets path and password
-                            liteDB.DBUnlock(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
+                            LiteDb.DbUnlock(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
 
-                            if (liteDB.passCheck() == true)
+                            if (LiteDb.PassCheck() == true)
                             {
-                                populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                 // Enable the menu controls
                                 menuItemChangeMasterPassword.Enabled = true;
                                 Text = "Padlockr - " + openDatabaseDialog.FileName;
@@ -198,7 +198,7 @@ namespace Prj_Padlockr
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
             // Change your DB Master password
-            passBoxChange pBc = new passBoxChange(liteDB);
+            passBoxChange pBc = new passBoxChange(LiteDb);
             if (pBc.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Master password has been successfully changed.", "Master Password Changed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -208,15 +208,15 @@ namespace Prj_Padlockr
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
             // Add new enties in to the PDB Table of the open DB - (Added constructor to pass the liteDB object through)
-            entryAddBox ne = new entryAddBox(liteDB);
+            entryAddBox ne = new entryAddBox(LiteDb);
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
-                liteDB.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
+                LiteDb.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
             }
 
             // Repop the listbox
-            populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
         }
 
@@ -225,16 +225,16 @@ namespace Prj_Padlockr
             // Edit enties in to the PDB Table of the open DB
             if (listBox.SelectedIndex != -1)
             {
-                entryAddBox ee = new entryAddBox(liteDB);
+                entryAddBox ee = new entryAddBox(LiteDb);
                 // Change the title of the dialog to "Edit"
                 ee.Text = "Edit Entry";
 
                 //TODO: Optimise!
-                DataTable dt = liteDB.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+                var dt = LiteDb.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
                 if (dt.Rows.Count != 0)
                 {
-                    DataRow dr = dt.Rows[dt.Rows.Count - 1];
-                    string oldAccName = dr["ACC_NAME"].ToString();
+                    var dr = dt.Rows[dt.Rows.Count - 1];
+                    var oldAccName = dr["ACC_NAME"].ToString();
 
                     // Print out the read information to the Edit Entry Box
                     ee.accNameTxtBox.Text = oldAccName;
@@ -246,8 +246,8 @@ namespace Prj_Padlockr
                     if (ee.ShowDialog() == DialogResult.OK)
                     {
                         // Capture the changes and send them to the DB
-                        liteDB.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
-                        populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                        LiteDb.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
+                        PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                         listBox.SelectedIndex = -1;
                         listBox_SelectedIndexChanged(sender, e);
@@ -261,11 +261,11 @@ namespace Prj_Padlockr
             // Delete selected DB entry
             if (listBox.SelectedIndex != -1)
             {
-                string sf = listBox.SelectedItem.ToString();
+                var sf = listBox.SelectedItem.ToString();
                 if (MessageBox.Show("Permanently delete entry \"" + sf + "\"?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    liteDB.DeleteData(sf);
-                    populateListBox(liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    LiteDb.DeleteData(sf);
+                    PopulateListBox(LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                     if (listBox.Items.Count <= 1)
                     {
@@ -296,19 +296,19 @@ namespace Prj_Padlockr
         {
             DataTable dt = null;
 
-            if (String.IsNullOrWhiteSpace(txtBoxSearch.Text) == false)
+            if (string.IsNullOrWhiteSpace(txtBoxSearch.Text) == false)
             {
-                dt = liteDB.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
+                dt = LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
                 btnClearSearch.Enabled = true;
             }
             else
             {
-                dt = liteDB.GetDataTable("SELECT ACC_NAME FROM PDB;");
+                dt = LiteDb.GetDataTable("SELECT ACC_NAME FROM PDB;");
                 btnClearSearch.Enabled = false;
             }
 
             // Output result to listbox
-            populateListBox(dt);
+            PopulateListBox(dt);
             listBox.SelectedIndex = -1;
             listBox_SelectedIndexChanged(sender, e);
         }
@@ -324,7 +324,7 @@ namespace Prj_Padlockr
                 btnCopyUsername.Enabled = true;
 
                 // Check whether the selected item has a link saved
-                if (String.IsNullOrWhiteSpace(getColData("LINK")) == false)
+                if (string.IsNullOrWhiteSpace(getColData("LINK")) == false)
                 {
                     btnVisitLink.Enabled = true;
                 }
@@ -332,7 +332,7 @@ namespace Prj_Padlockr
                 {
                     btnVisitLink.Enabled = false;
                 }
-                if (String.IsNullOrWhiteSpace(getColData("NOTES")) == false)
+                if (string.IsNullOrWhiteSpace(getColData("NOTES")) == false)
                 {
                     btnViewNotes.Enabled = true;
                 }
@@ -358,8 +358,14 @@ namespace Prj_Padlockr
         {
             if (listBox.SelectedIndex != -1)
             {
-                viewNotesBox vn = new viewNotesBox();
-                vn.notesTxtBox.Text = getColData("NOTES");
+                var vn = new viewNotesBox
+                {
+                    notesTxtBox =
+                    {
+                        Text = getColData("NOTES")
+                    }
+                };
+
                 vn.ShowDialog();
             }
         }
@@ -421,14 +427,14 @@ namespace Prj_Padlockr
         //TODO: Opitimise! Retrieve specific column data
         private string getColData(string field)
         {
-            DataTable dt = liteDB.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
-            DataRow dr = dt.Rows[dt.Rows.Count - 1];
+            var dt = LiteDb.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+            var dr = dt.Rows[dt.Rows.Count - 1];
 
             return dr[field].ToString();
         }
 
         //TODO: Opitimise! Populates the listbox when provided with a datatable
-        private void populateListBox(DataTable dt)
+        private void PopulateListBox(DataTable dt)
         {
             // Check whether the DataTable has data to output
             if (dt.Rows.Count != 0)
@@ -466,28 +472,28 @@ namespace Prj_Padlockr
         private string apoCleansing(string pass)
         {
             // Gets stores the password in the p
-            string p = pass;
+            var p = pass;
             // Counts the number of apostrophe's there are in the pass string
-            int c = p.Split('\'').Length - 1;
+            var c = p.Split('\'').Length - 1;
             
             if (c != 0)
             {
                 // New list to convert to an array to cycle through
-                List<int> pos = new List<int>();
-                int temp = 0;
+                var pos = new List<int>();
+                var temp = 0;
 
                 // Assembles the list of the index postions of the apostrophe's
-                for (int i = 0; i <= c - 1; i++)
+                for (var i = 0; i <= c - 1; i++)
                 {
                     pos.Add(p.IndexOf('\'', temp));
                     temp = p.IndexOf('\'', temp) + 1;
                 }
 
                 // Converts the list to an array
-                int[] n = pos.ToArray();
+                var n = pos.ToArray();
 
                 // Cycle through the array and double up the apostrophe's - because SQLite uses the second apostrophe as an escape symbol
-                for (int i = 0; i <= n.Length - 1; i++)
+                for (var i = 0; i <= n.Length - 1; i++)
                 {
                     if (i != 0)
                     {

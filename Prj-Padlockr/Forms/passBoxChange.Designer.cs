@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr
+﻿namespace Prj_Padlockr.Forms
 {
     partial class passBoxChange
     {
@@ -239,10 +239,10 @@
         protected internal System.Windows.Forms.MaskedTextBox maskedRnewBox;
         protected internal System.Windows.Forms.Label lblOpassValidation;
         protected internal System.Windows.Forms.Label lblNewPassValidation;
-        private SQLiteHandler liteDB;
+        private SqLiteHandler liteDB;
 
         // Parse the liteDB object through the passBoxChange dialog
-        public passBoxChange(SQLiteHandler liteDB)
+        public passBoxChange(SqLiteHandler liteDB)
         {
             InitializeComponent();
             this.liteDB = liteDB;
