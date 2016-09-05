@@ -267,15 +267,13 @@
         private System.Windows.Forms.Button btnLinkPaste;
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
-        private PadlockrDbContext dbContext;
-        private TempDbClass tempDb;
+        private IPadlockrDbContext dbContext;
 
         // Parse the dbContext object to the dialog window
-        public entryAddBox(PadlockrDbContext dbContext, TempDbClass tempDb)
+        public entryAddBox(IPadlockrDbContext dbContext)
         {
             InitializeComponent();
             this.dbContext = dbContext;
-            this.tempDb = tempDb;
         }
         private System.Windows.Forms.Label label5;
         protected internal System.Windows.Forms.TextBox notesTxtBox;

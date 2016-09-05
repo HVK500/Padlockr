@@ -141,6 +141,7 @@
     <Compile Include="Forms\viewNotesBox.Designer.cs">
       <DependentUpon>viewNotesBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqliteWrapper.cs" />
     <EmbeddedResource Include="Forms\aboutBox.resx">
       <DependentUpon>aboutBox.cs</DependentUpon>
     </EmbeddedResource>

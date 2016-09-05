@@ -11,19 +11,14 @@ namespace Prj_Padlockr.Forms
     public partial class MainWindow : Form
     {
         // - Create the instance that controls all the DB interactions
-        internal TempDbClass tempDb = null;
-        internal PadlockrDbContext DbContext = null;
+        internal IPadlockrDbContext DbContext;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            tempDb = new TempDbClass();
-            DbContext = new PadlockrDbContext(tempDb);
+            DbContext = new PadlockrDbContext(new SqliteWrapper());
         }
-
         
-
         private void mainWindow_Load(object sender, EventArgs e)
         {
             // Display current version
@@ -49,11 +44,11 @@ namespace Prj_Padlockr.Forms
                             if (pbU.ShowDialog() == DialogResult.OK)
                             {
                                 // Sets path and password
-                                tempDb.SetConnectionStrings(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
+                                DbContext.SetConnectionStrings(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
                                 // Check if it is the correct password
-                                if (tempDb.PassCheck())
+                                if (DbContext.PassCheck())
                                 {
-                                    PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                     // Enable the menu controls
                                     menuItemChangeMasterPassword.Enabled = true;
                                     // Disabled because the open DB is the default already
@@ -88,7 +83,7 @@ namespace Prj_Padlockr.Forms
 
         private void menuItemExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //TODO: When DB is opened or created and there are no entries disable the listbox
@@ -100,7 +95,7 @@ namespace Prj_Padlockr.Forms
                 // Reset controls from the previously opened DB
                 if (listBox.Items.Count != 0)
                 {
-                    initializeMainWindow();
+                    InitializeMainWindow();
                 }
 
                 // Set the DB directory to create and open
@@ -127,7 +122,7 @@ namespace Prj_Padlockr.Forms
                     }
 
                     // Open the brand new database (empty)
-                    PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                     // Change the title of the main window to display the name of the open DB
                     Text = "Padlockr - " + dbDir;
                 }
@@ -142,7 +137,7 @@ namespace Prj_Padlockr.Forms
                 // Reset controls from the previously opened DB
                 if (listBox.Items.Count != 0)
                 {
-                    initializeMainWindow();
+                    InitializeMainWindow();
                 }
 
                 var pbU = new passBoxUnlock();
@@ -159,11 +154,11 @@ namespace Prj_Padlockr.Forms
                         if (pbU.ShowDialog() == DialogResult.OK)
                         {
                             // Sets path and password
-                            tempDb.SetConnectionStrings(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
+                            DbContext.SetConnectionStrings(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
 
-                            if (tempDb.PassCheck() == true)
+                            if (DbContext.PassCheck())
                             {
-                                PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
                                 // Enable the menu controls
                                 menuItemChangeMasterPassword.Enabled = true;
                                 Text = "Padlockr - " + openDatabaseDialog.FileName;
@@ -202,7 +197,7 @@ namespace Prj_Padlockr.Forms
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
             // Change your DB Master password
-            var pBc = new passBoxChange(DbContext, tempDb);
+            var pBc = new passBoxChange(DbContext);
             if (pBc.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Master password has been successfully changed.", "Master Password Changed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -212,7 +207,7 @@ namespace Prj_Padlockr.Forms
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
             // Add new enties in to the PDB Table of the open DB - (Added constructor to pass the liteDB object through)
-            var ne = new entryAddBox(DbContext, tempDb);
+            var ne = new entryAddBox(DbContext);
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
@@ -220,7 +215,7 @@ namespace Prj_Padlockr.Forms
             }
 
             // Repop the listbox
-            PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
         }
 
@@ -229,12 +224,12 @@ namespace Prj_Padlockr.Forms
             // Edit enties in to the PDB Table of the open DB
             if (listBox.SelectedIndex != -1)
             {
-                var ee = new entryAddBox(DbContext, tempDb);
+                var ee = new entryAddBox(DbContext);
                 // Change the title of the dialog to "Edit"
                 ee.Text = "Edit Entry";
 
                 //TODO: Optimise!
-                var dt = tempDb.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+                var dt = DbContext.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
                 if (dt.Rows.Count != 0)
                 {
                     var dr = dt.Rows[dt.Rows.Count - 1];
@@ -251,7 +246,7 @@ namespace Prj_Padlockr.Forms
                     {
                         // Capture the changes and send them to the DB
                         DbContext.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
-                        PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                        PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                         listBox.SelectedIndex = -1;
                         listBox_SelectedIndexChanged(sender, e);
@@ -269,7 +264,7 @@ namespace Prj_Padlockr.Forms
                 if (MessageBox.Show("Permanently delete entry \"" + sf + "\"?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     DbContext.DeleteData(sf);
-                    PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                     if (listBox.Items.Count <= 1)
                     {
@@ -298,16 +293,16 @@ namespace Prj_Padlockr.Forms
         // Handles the search feature
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = null;
+            DataTable dt;
 
             if (string.IsNullOrWhiteSpace(txtBoxSearch.Text) == false)
             {
-                dt = tempDb.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
+                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
                 btnClearSearch.Enabled = true;
             }
             else
             {
-                dt = tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;");
+                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;");
                 btnClearSearch.Enabled = false;
             }
 
@@ -328,7 +323,7 @@ namespace Prj_Padlockr.Forms
                 btnCopyUsername.Enabled = true;
 
                 // Check whether the selected item has a link saved
-                if (string.IsNullOrWhiteSpace(getColData("LINK")) == false)
+                if (string.IsNullOrWhiteSpace(GetColData("LINK")) == false)
                 {
                     btnVisitLink.Enabled = true;
                 }
@@ -336,7 +331,7 @@ namespace Prj_Padlockr.Forms
                 {
                     btnVisitLink.Enabled = false;
                 }
-                if (string.IsNullOrWhiteSpace(getColData("NOTES")) == false)
+                if (string.IsNullOrWhiteSpace(GetColData("NOTES")) == false)
                 {
                     btnViewNotes.Enabled = true;
                 }
@@ -366,7 +361,7 @@ namespace Prj_Padlockr.Forms
                 {
                     notesTxtBox =
                     {
-                        Text = getColData("NOTES")
+                        Text = GetColData("NOTES")
                     }
                 };
 
@@ -379,7 +374,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Process.Start(getColData("LINK"));
+                Process.Start(GetColData("LINK"));
             }
         }
 
@@ -388,7 +383,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Clipboard.SetText(getColData("PASS"));
+                Clipboard.SetText(GetColData("PASS"));
             }
         }
 
@@ -397,7 +392,7 @@ namespace Prj_Padlockr.Forms
         {
             if (listBox.SelectedIndex != -1)
             {
-                Clipboard.SetText(getColData("USER_NAME"));
+                Clipboard.SetText(GetColData("USER_NAME"));
             }
         }
 
@@ -408,7 +403,7 @@ namespace Prj_Padlockr.Forms
         }
 
         // Resets the controls back to the initial window
-        private void initializeMainWindow()
+        private void InitializeMainWindow()
         {
             listBox.Items.Clear();
             listBox.Enabled = false;
@@ -429,9 +424,9 @@ namespace Prj_Padlockr.Forms
         }
 
         //TODO: Opitimise! Retrieve specific column data
-        private string getColData(string field)
+        private string GetColData(string field)
         {
-            var dt = tempDb.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem.ToString() + "';");
+            var dt = DbContext.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
             var dr = dt.Rows[dt.Rows.Count - 1];
 
             return dr[field].ToString();
@@ -459,7 +454,7 @@ namespace Prj_Padlockr.Forms
                     lblSpyGlass.Enabled = true;
                     txtBoxSearch.Enabled = true;
                 }
-                else if (dt.Rows.Count == 1 && String.IsNullOrWhiteSpace(txtBoxSearch.Text) == true)
+                else if (dt.Rows.Count == 1 && string.IsNullOrWhiteSpace(txtBoxSearch.Text))
                 {
                     lblSpyGlass.Enabled = false;
                     txtBoxSearch.Enabled = false;

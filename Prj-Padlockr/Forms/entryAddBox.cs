@@ -146,7 +146,7 @@ namespace Prj_Padlockr.Forms
                 if (string.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
                 {
                     // Check whether the account name exsits
-                    var dt = tempDb.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
+                    var dt = dbContext.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
 
                     if (dt.Rows.Count > 0)
                     {
