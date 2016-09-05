@@ -268,12 +268,14 @@
         private System.Windows.Forms.Label lblLinkVal;
         private System.Windows.Forms.Button btnClearLink;
         private SqLiteHandler liteDB;
+        private TempDbClass tempDb;
 
         // Parse the liteDB object to the dialog window
-        public entryAddBox(SqLiteHandler liteDB)
+        public entryAddBox(SqLiteHandler liteDB, TempDbClass tempDb)
         {
             InitializeComponent();
             this.liteDB = liteDB;
+            this.tempDb = tempDb;
         }
         private System.Windows.Forms.Label label5;
         protected internal System.Windows.Forms.TextBox notesTxtBox;

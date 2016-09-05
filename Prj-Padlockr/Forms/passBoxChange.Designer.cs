@@ -240,12 +240,14 @@
         protected internal System.Windows.Forms.Label lblOpassValidation;
         protected internal System.Windows.Forms.Label lblNewPassValidation;
         private SqLiteHandler liteDB;
+        private TempDbClass tempDb;
 
         // Parse the liteDB object through the passBoxChange dialog
-        public passBoxChange(SqLiteHandler liteDB)
+        public passBoxChange(SqLiteHandler liteDB, TempDbClass tempDb)
         {
             InitializeComponent();
             this.liteDB = liteDB;
+            this.tempDb = tempDb;
         }
     }
 }

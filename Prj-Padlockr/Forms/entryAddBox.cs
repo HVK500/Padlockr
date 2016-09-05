@@ -22,7 +22,7 @@ namespace Prj_Padlockr.Forms
 
         private void passMaskedBox_TextChanged(object sender, System.EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
             {
                 btnMaskWatcher.Enabled = true;
                 btnSubmit.Enabled = true;
@@ -48,20 +48,20 @@ namespace Prj_Padlockr.Forms
 
         private void accNameTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
             {
                 userNameTxtBox.Enabled = true;
-                if (String.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
+                if (string.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
                 {
                     userNameTxtBox.Enabled = true;
                 }
-                if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     passMaskedTextBox.Enabled = true;
                     btnMaskWatcher.Enabled = true;
                     btnGenerate.Enabled = true;
                 }
-                if (String.IsNullOrWhiteSpace(userNameTxtBox.Text) == false && String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                if (string.IsNullOrWhiteSpace(userNameTxtBox.Text) == false && string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     btnSubmit.Enabled = true;
                 }
@@ -78,11 +78,11 @@ namespace Prj_Padlockr.Forms
 
         private void userNameTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
             {
                 passMaskedTextBox.Enabled = true;
                 btnGenerate.Enabled = true;
-                if (String.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
+                if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     btnSubmit.Enabled = true;
                 }
@@ -98,7 +98,7 @@ namespace Prj_Padlockr.Forms
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             // Generate a password in the password creation window
-            generatePassBox gPb = new generatePassBox();
+            var gPb = new generatePassBox();
             if (gPb.ShowDialog() == DialogResult.OK)
             {
                 // Get generated password from txtBoxGen
@@ -109,7 +109,7 @@ namespace Prj_Padlockr.Forms
         private void btnLinkPaste_Click(object sender, EventArgs e)
         {
             // Paste link from clipboard only if it contains a link format!
-            string cbText = Clipboard.GetText();
+            var cbText = Clipboard.GetText();
             if (cbText.Contains("http://") == true || cbText.Contains("https://") == true)
             {
                 linkTxtBox.Text = cbText;
@@ -128,7 +128,7 @@ namespace Prj_Padlockr.Forms
 
         private void linkTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(linkTxtBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(linkTxtBox.Text) == false)
             {
                 btnClearLink.Enabled = true;
             }
@@ -143,10 +143,10 @@ namespace Prj_Padlockr.Forms
         {
             if (DialogResult.ToString() != "Cancel")
             {
-                if (String.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
+                if (string.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
                 {
                     // Check whether the account name exsits
-                    DataTable dt = liteDB.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
+                    var dt = tempDb.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
 
                     if (dt.Rows.Count > 0)
                     {

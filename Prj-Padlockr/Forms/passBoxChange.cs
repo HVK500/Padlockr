@@ -81,7 +81,7 @@ namespace Prj_Padlockr.Forms
         {
             if (DialogResult.ToString() != "Cancel")
             {
-                if (liteDB.PassCheck(maskedOldBox.Text) == true)
+                if (tempDb.PassCheck(maskedOldBox.Text) == true)
                 {
                     lblOpassValidation.Text = "";
                     

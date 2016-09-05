@@ -4,37 +4,17 @@ using System.Data.SQLite;
 
 namespace Prj_Padlockr
 {
-    public class SqLiteHandler
+    public class TempDbClass
     {
-        // Locker object makes sure the working thead is locked on the task needed
-        private static readonly object Locker = new object();
+        // todo: drop locker - possibly not required
+        // Locker object makes sure the working thread is locked on the task needed
+        public readonly object Locker = new object();
         // Connection object
         private SQLiteConnection _conn;
-
         // Sqlite connection string
         private string _dbConn;
         // Unlocking Sqlite connection
         private string _dbUnlock;
-
-        // Controls the storing of connection strings
-        public void DbUnlock(string dbDir, string pass)
-        {
-            _dbUnlock = "Data Source=" + dbDir + ";Version=3;Password=" + pass + ";";
-            _dbConn = "Data Source=" + dbDir + ";Version=3;";
-        }
-
-        // SQLite Command executor
-        private static void ConnCommand(SQLiteConnection conn, string query)
-        {
-            using (var c = conn.CreateCommand())
-            {
-                // Insert command text
-                c.CommandText = query;
-
-                // Execute command
-                c.ExecuteNonQuery();
-            }
-        }
 
         // Check if password unlocks the DB
         public bool PassCheck()
@@ -71,7 +51,40 @@ namespace Prj_Padlockr
             // Returns whether pass is correct of not
             return pc;
         }
-        // Check if specific password unlocks the DB as parameter
+
+        // SQLite Command executor
+        public void ConnCommand(SQLiteConnection conn, string query)
+        {
+            using (var c = conn.CreateCommand())
+            {
+                // Insert command text
+                c.CommandText = query;
+
+                // Execute command
+                c.ExecuteNonQuery();
+            }
+        }
+
+        public void RunCommand(string query)
+        {
+            using (var c = _conn.CreateCommand())
+            {
+                // Insert command text
+                c.CommandText = query;
+
+                // Execute command
+                c.ExecuteNonQuery();
+            }
+        }
+
+        // todo: rename to something like set connection strings
+        // Controls the storing of connection strings
+        public void DbUnlock(string dbDir, string pass)
+        {
+            _dbUnlock = "Data Source=" + dbDir + ";Version=3;Password=" + pass + ";";
+            _dbConn = "Data Source=" + dbDir + ";Version=3;";
+        }
+
         public bool PassCheck(string pass)
         {
             // Password check result output variable
@@ -107,72 +120,6 @@ namespace Prj_Padlockr
             return pc;
         }
 
-        // Controls the creation and initialization of a new DB and table
-        public void InitializeDb(string dbDir, string pass)
-        {
-            // Sets the DB connect string
-            DbUnlock(dbDir, pass);
-
-            // Create the DB file itself
-            SQLiteConnection.CreateFile(dbDir);
-
-            lock (Locker)
-            {
-                // Sets connection info ready for connection
-                _conn = new SQLiteConnection(_dbConn);
-
-                // Set the Database password
-                _conn.SetPassword(pass);
-
-                // Create the default PDB Table
-                try
-                {
-                    // Opens the DB
-                    _conn.Open();
-
-                    // Execute query against DB
-                    ConnCommand(_conn, "CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME nvarchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255), NOTES ntext);");
-                }
-                catch
-                {
-                    throw new Exception();
-                }
-                finally
-                {
-                    // Close connection
-                    _conn.Close();
-                }
-            }
-        }
-
-        // Change password of current DB
-        internal void ChangePass(string newPass)
-        {
-            lock (Locker)
-            {
-                // Sets connection info ready for connection
-                _conn = new SQLiteConnection(_dbUnlock);
-
-                try
-                {
-                    // Open connection
-                    _conn.Open();
-
-                    // Change master password
-                    _conn.ChangePassword(newPass);
-                }
-                catch
-                {
-                    throw new Exception();
-                }
-                finally
-                {
-                    // Close connection
-                    _conn.Close();
-                }
-            }
-        }
-
         // Gets all the data rows from the database table PDB
         public DataTable GetDataTable(string query)
         {
@@ -196,7 +143,7 @@ namespace Prj_Padlockr
                         reader.Close();
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     throw new Exception();
                 }
@@ -206,25 +153,114 @@ namespace Prj_Padlockr
                     _conn.Close();
                 }
             }
-            
+
             return dt;
+        }
+
+        public void OpenDbConnection()
+        {
+            // Sets connection info ready for connection
+            _conn = new SQLiteConnection(_dbConn);
+        }
+
+        public void CloseDbConnection()
+        {
+            if (_conn.State == ConnectionState.Closed)
+                return;
+
+            _conn.Close();
+        }
+
+        public void ChangePass(string newPass)
+        {
+            _conn.ChangePassword(newPass);
+        }
+
+        public void SetPassword(string pass)
+        {
+            _conn.SetPassword(pass);
+        }
+    }
+
+    public class SqLiteHandler
+    {
+        private readonly TempDbClass _db;
+
+        public SqLiteHandler(TempDbClass dbClass)
+        {
+            _db = dbClass;
+        }
+
+        // Change password of current DB
+        public void ChangePass(string newPass)
+        {
+            lock (_db.Locker)
+            {
+                try
+                {
+                    _db.OpenDbConnection();
+                    _db.ChangePass(newPass);
+                }
+                catch (Exception ex)
+                {
+                    // todo: handle this better
+                    throw new Exception();
+                }
+                finally
+                {
+                    _db.CloseDbConnection();
+                }
+            }
+        }
+
+        // Controls the creation and initialization of a new DB and table
+        public void InitializeDb(string dbDir, string pass)
+        {
+            // Sets the DB connect string
+            _db.DbUnlock(dbDir, pass);
+
+            // Create the DB file itself
+            SQLiteConnection.CreateFile(dbDir);
+
+            lock (_db.Locker)
+            {
+                _db.OpenDbConnection();
+
+                // Set the Database password
+                _db.SetPassword(pass);
+
+                // Create the default PDB Table
+                try
+                {
+                    // todo: move command into resource, or place better inline
+                    // Execute query against DB
+                    _db.RunCommand("CREATE TABLE PDB (ACC_NAME nvarchar(255) PRIMARY KEY NOT NULL, USER_NAME nvarchar(255) NOT NULL, PASS nvarchar(255) NOT NULL, LINK nvarchar(255), NOTES ntext);");
+                }
+                catch (Exception ex)
+                {
+                    // todo: log this ex
+                    throw new Exception();
+                }
+                finally
+                {
+                    // Close connection
+                    _db.CloseDbConnection();
+                }
+            }
         }
 
         // Insert new data into DB
         public void InsertData(string s1, string s2, string s3, string s4, string s5)
         {
-            lock (Locker)
+            lock (_db.Locker)
             {
-                // Sets connection info ready for connection
-                _conn = new SQLiteConnection(_dbUnlock);
-
                 try
                 {
-                    // Open connection
-                    _conn.Open();
+                    _db.OpenDbConnection();
 
+                    // todo: move command into resource, or place better in-line
                     // Execute query against DB
-                    ConnCommand(_conn, "INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK, NOTES) VALUES('" + s1 + "', '" + s2 + "', '" + s3 + "', '" + s4 + "', '" + s5 + "');");
+                    _db.RunCommand("INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK, NOTES) VALUES('" + s1 + "', '" + s2 + "', '" + s3 + "', '" + s4 + "', '" + s5 + "');");
                 }
                 catch
                 {
@@ -232,8 +268,7 @@ namespace Prj_Padlockr
                 }
                 finally
                 {
-                    // Close connection
-                    _conn.Close();
+                    _db.CloseDbConnection();
                 }
             }
         }
@@ -241,18 +276,15 @@ namespace Prj_Padlockr
         // Update data in DB
         public void UpdateData(string oldAccName, string s1, string s2, string s3, string s4)
         {
-            lock (Locker)
+            lock (_db.Locker)
             {
-                // Sets connection info ready for connection
-                _conn = new SQLiteConnection(_dbUnlock);
-
                 try
                 {
-                    // Open connection
-                    _conn.Open();
+                    _db.OpenDbConnection();
 
+                    // todo: move command into resource, or place better in-line
                     // Execute query against DB
-                    ConnCommand(_conn, "UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "', NOTES = '" + s4 + "' WHERE ACC_NAME = '" + oldAccName + "';");
+                    _db.RunCommand("UPDATE PDB SET USER_NAME = '" + s1 + "', PASS = '" + s2 + "', LINK = '" + s3 + "', NOTES = '" + s4 + "' WHERE ACC_NAME = '" + oldAccName + "';");
                 }
                 catch
                 {
@@ -261,7 +293,7 @@ namespace Prj_Padlockr
                 finally
                 {
                     // Close connection
-                    _conn.Close();
+                    _db.CloseDbConnection();
                 }
             }
         }
@@ -269,18 +301,15 @@ namespace Prj_Padlockr
         // Delete data in DB
         public void DeleteData(string accName)
         {
-            lock (Locker)
+            lock (_db.Locker)
             {
-                // Sets connection info ready for connection
-                _conn = new SQLiteConnection(_dbUnlock);
-
                 try
                 {
-                    // Open connection
-                    _conn.Open();
+                    _db.OpenDbConnection();
 
+                    // todo: move command into resource, or place better in-line
                     // Execute query against DB
-                    ConnCommand(_conn, "DELETE FROM PDB WHERE ACC_NAME = '" + accName + "';");
+                    _db.RunCommand("DELETE FROM PDB WHERE ACC_NAME = '" + accName + "';");
                 }
                 catch
                 {
@@ -289,7 +318,7 @@ namespace Prj_Padlockr
                 finally
                 {
                     // Close connection
-                    _conn.Close();
+                    _db.CloseDbConnection();
                 }
             }
         }
