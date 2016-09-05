@@ -129,18 +129,14 @@ namespace Prj_Padlockr
         {
             var dt = new DataTable();
 
-            // Sets connection info ready for connection
-            _conn = new SQLiteConnection(_dbUnlock);
-
             try
             {
-                // Open connection
-                _conn.Open();
+                OpenDbConnection();
 
                 using (var c = _conn.CreateCommand())
                 {
                     c.CommandText = query;
-                    SQLiteDataReader reader = c.ExecuteReader();
+                    var reader = c.ExecuteReader();
                     dt.Load(reader);
                     reader.Close();
                 }
@@ -151,8 +147,7 @@ namespace Prj_Padlockr
             }
             finally
             {
-                // Close connection
-                _conn.Close();
+                CloseDbConnection();
             }
 
             return dt;

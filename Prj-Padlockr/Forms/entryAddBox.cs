@@ -138,34 +138,26 @@ namespace Prj_Padlockr.Forms
             }
         }
 
+        // todo: add tests
         // Checks whether ACC_NAME already exists before closing the dialog
         private void entryAddBox_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult.ToString() != "Cancel")
-            {
-                if (string.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
-                {
-                    // Check whether the account name exsits
-                    var dt = dbContext.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + accNameTxtBox.Text + "';");
+            if (DialogResult == DialogResult.Cancel)
+                return;
 
-                    if (dt.Rows.Count > 0)
-                    {
-                        if (dt.Rows.Count == 1)
-                        {
-                            // When New Entry encounters a Account name that is in the DB already it will cancel the closing event and show message 
-                            if (Text == "New Entry")
-                            {
-                                e.Cancel = true;
-                                MessageBox.Show("An account with the name '" + accNameTxtBox + "' already exists.", "Account Already Exists");
-                            }
-                            //    // POST CHANGES
-                        }
+            if (string.IsNullOrWhiteSpace(accNameTxtBox.Text))
+                return;
 
-                    }
-                    //    // POST NEW
-                }
-            }
-            
+            // Check whether the account name exists
+            if (!dbContext.AccountExists(accNameTxtBox.Text))
+                return;
+
+            if (Text != "New Entry")
+                return;
+
+            e.Cancel = true;
+            var errorMsg = string.Format(Properties.Resources.AccountWithNameExists, accNameTxtBox);
+            MessageBox.Show(errorMsg, Properties.Resources.AccountWithNameExistsTitle);
         }
     }
 }

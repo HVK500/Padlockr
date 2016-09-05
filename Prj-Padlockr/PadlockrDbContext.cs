@@ -15,6 +15,7 @@ namespace Prj_Padlockr
         bool PassCheck();
         void SetConnectionStrings(string dbDir, string pass);
         DataTable GetDataTable(string query);
+        bool AccountExists(string name);
     }
 
     public class PadlockrDbContext : IPadlockrDbContext
@@ -170,6 +171,12 @@ namespace Prj_Padlockr
         public DataTable GetDataTable(string query)
         {
             return _db.GetDataTable(query);
+        }
+
+        public bool AccountExists(string name)
+        {
+            var dt = GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + name + "';");
+            return dt.Rows.Count > 0;
         }
     }
 }

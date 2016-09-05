@@ -61,6 +61,24 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An account with the name &apos;{0}&apos; already exists..
+        /// </summary>
+        internal static string AccountWithNameExists {
+            get {
+                return ResourceManager.GetString("AccountWithNameExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Already Exists.
+        /// </summary>
+        internal static string AccountWithNameExistsTitle {
+            get {
+                return ResourceManager.GetString("AccountWithNameExistsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Clear {
