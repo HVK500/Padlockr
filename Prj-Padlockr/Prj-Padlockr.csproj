@@ -134,7 +134,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLiteHandler.cs" />
+    <Compile Include="PadlockrDbContext.cs" />
     <Compile Include="Forms\viewNotesBox.cs">
       <SubType>Form</SubType>
     </Compile>

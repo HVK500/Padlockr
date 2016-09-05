@@ -12,14 +12,14 @@ namespace Prj_Padlockr.Forms
     {
         // - Create the instance that controls all the DB interactions
         internal TempDbClass tempDb = null;
-        internal SqLiteHandler LiteDb = null;
+        internal PadlockrDbContext DbContext = null;
 
         public MainWindow()
         {
             InitializeComponent();
 
             tempDb = new TempDbClass();
-            LiteDb = new SqLiteHandler(tempDb);
+            DbContext = new PadlockrDbContext(tempDb);
         }
 
         
@@ -49,7 +49,7 @@ namespace Prj_Padlockr.Forms
                             if (pbU.ShowDialog() == DialogResult.OK)
                             {
                                 // Sets path and password
-                                tempDb.DbUnlock(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
+                                tempDb.SetConnectionStrings(Properties.Settings.Default.defaultDBpath, pbU.maskedMasterTextBox.Text);
                                 // Check if it is the correct password
                                 if (tempDb.PassCheck())
                                 {
@@ -111,7 +111,7 @@ namespace Prj_Padlockr.Forms
                 if (pbL.ShowDialog() == DialogResult.OK)
                 {
                     // Sets the DB Password and creates the PDB Table
-                    LiteDb.InitializeDb(dbDir, pbL.firstMaskedTextBox.Text);
+                    DbContext.InitializeDb(dbDir, pbL.firstMaskedTextBox.Text);
                     if (MessageBox.Show("Would you like to set the new database to your default?", "Set Default Database", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         //Make the new DB the default
@@ -136,7 +136,6 @@ namespace Prj_Padlockr.Forms
 
         private void menuItemOpenDatabase_Click(object sender, EventArgs e)
         {
-
             // Open an exsisting DB through a file browser
             if (openDatabaseDialog.ShowDialog() == DialogResult.OK)
             {
@@ -160,7 +159,7 @@ namespace Prj_Padlockr.Forms
                         if (pbU.ShowDialog() == DialogResult.OK)
                         {
                             // Sets path and password
-                            tempDb.DbUnlock(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
+                            tempDb.SetConnectionStrings(openDatabaseDialog.FileName, pbU.maskedMasterTextBox.Text);
 
                             if (tempDb.PassCheck() == true)
                             {
@@ -203,7 +202,7 @@ namespace Prj_Padlockr.Forms
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
             // Change your DB Master password
-            var pBc = new passBoxChange(LiteDb, tempDb);
+            var pBc = new passBoxChange(DbContext, tempDb);
             if (pBc.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Master password has been successfully changed.", "Master Password Changed", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -213,11 +212,11 @@ namespace Prj_Padlockr.Forms
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
             // Add new enties in to the PDB Table of the open DB - (Added constructor to pass the liteDB object through)
-            var ne = new entryAddBox(LiteDb, tempDb);
+            var ne = new entryAddBox(DbContext, tempDb);
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
-                LiteDb.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
+                DbContext.InsertData(apoCleansing(ne.accNameTxtBox.Text), apoCleansing(ne.userNameTxtBox.Text), apoCleansing(ne.passMaskedTextBox.Text), apoCleansing(ne.linkTxtBox.Text), apoCleansing(ne.notesTxtBox.Text));
             }
 
             // Repop the listbox
@@ -230,7 +229,7 @@ namespace Prj_Padlockr.Forms
             // Edit enties in to the PDB Table of the open DB
             if (listBox.SelectedIndex != -1)
             {
-                var ee = new entryAddBox(LiteDb, tempDb);
+                var ee = new entryAddBox(DbContext, tempDb);
                 // Change the title of the dialog to "Edit"
                 ee.Text = "Edit Entry";
 
@@ -251,7 +250,7 @@ namespace Prj_Padlockr.Forms
                     if (ee.ShowDialog() == DialogResult.OK)
                     {
                         // Capture the changes and send them to the DB
-                        LiteDb.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
+                        DbContext.UpdateData(oldAccName, apoCleansing(ee.userNameTxtBox.Text), apoCleansing(ee.passMaskedTextBox.Text), apoCleansing(ee.linkTxtBox.Text), apoCleansing(ee.notesTxtBox.Text));
                         PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                         listBox.SelectedIndex = -1;
@@ -269,7 +268,7 @@ namespace Prj_Padlockr.Forms
                 var sf = listBox.SelectedItem.ToString();
                 if (MessageBox.Show("Permanently delete entry \"" + sf + "\"?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    LiteDb.DeleteData(sf);
+                    DbContext.DeleteData(sf);
                     PopulateListBox(tempDb.GetDataTable("SELECT ACC_NAME FROM PDB;"));
 
                     if (listBox.Items.Count <= 1)
