@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr.Forms
+﻿namespace Padlockr.Forms
 {
     partial class PassBoxLock
     {
@@ -91,7 +91,7 @@
             // btnMaskWatcher2
             // 
             this.btnMaskWatcher2.Enabled = false;
-            this.btnMaskWatcher2.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
+            this.btnMaskWatcher2.Image = global::Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcher2.Location = new System.Drawing.Point(371, 71);
             this.btnMaskWatcher2.Name = "btnMaskWatcher2";
             this.btnMaskWatcher2.Size = new System.Drawing.Size(18, 22);
@@ -103,7 +103,7 @@
             // 
             // picKey
             // 
-            this.picKey.Image = global::Prj_Padlockr.Properties.Resources.Imgkey;
+            this.picKey.Image = global::Padlockr.Properties.Resources.Imgkey;
             this.picKey.InitialImage = null;
             this.picKey.Location = new System.Drawing.Point(7, 12);
             this.picKey.Name = "picKey";
@@ -115,7 +115,7 @@
             // btnMaskWatcher1
             // 
             this.btnMaskWatcher1.Enabled = false;
-            this.btnMaskWatcher1.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
+            this.btnMaskWatcher1.Image = global::Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcher1.Location = new System.Drawing.Point(371, 28);
             this.btnMaskWatcher1.Name = "btnMaskWatcher1";
             this.btnMaskWatcher1.Size = new System.Drawing.Size(18, 22);

@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 
-namespace Prj_Padlockr
+namespace Padlockr
 {
     public interface IPadlockrDbContext
     {

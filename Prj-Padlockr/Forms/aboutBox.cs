@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
-using Prj_Padlockr.Properties;
+using Padlockr.Properties;
 
-namespace Prj_Padlockr.Forms
+namespace Padlockr.Forms
 {
     public partial class AboutBox : Form
     {

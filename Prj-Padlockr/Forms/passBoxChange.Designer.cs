@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr.Forms
+﻿namespace Padlockr.Forms
 {
     partial class PassBoxChange
     {
@@ -47,7 +47,7 @@
             // 
             // picKey
             // 
-            this.picKey.Image = global::Prj_Padlockr.Properties.Resources.Imgkey;
+            this.picKey.Image = global::Padlockr.Properties.Resources.Imgkey;
             this.picKey.InitialImage = null;
             this.picKey.Location = new System.Drawing.Point(7, 15);
             this.picKey.Name = "picKey";
@@ -107,7 +107,7 @@
             // btnMaskWatcherOld
             // 
             this.btnMaskWatcherOld.Enabled = false;
-            this.btnMaskWatcherOld.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
+            this.btnMaskWatcherOld.Image = global::Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcherOld.Location = new System.Drawing.Point(371, 27);
             this.btnMaskWatcherOld.Name = "btnMaskWatcherOld";
             this.btnMaskWatcherOld.Size = new System.Drawing.Size(18, 22);
@@ -120,7 +120,7 @@
             // btnMaskWatcherNew
             // 
             this.btnMaskWatcherNew.Enabled = false;
-            this.btnMaskWatcherNew.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
+            this.btnMaskWatcherNew.Image = global::Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcherNew.Location = new System.Drawing.Point(371, 66);
             this.btnMaskWatcherNew.Name = "btnMaskWatcherNew";
             this.btnMaskWatcherNew.Size = new System.Drawing.Size(18, 22);
@@ -133,7 +133,7 @@
             // btnMaskWatcherRnew
             // 
             this.btnMaskWatcherRnew.Enabled = false;
-            this.btnMaskWatcherRnew.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
+            this.btnMaskWatcherRnew.Image = global::Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcherRnew.Location = new System.Drawing.Point(371, 105);
             this.btnMaskWatcherRnew.Name = "btnMaskWatcherRnew";
             this.btnMaskWatcherRnew.Size = new System.Drawing.Size(18, 22);

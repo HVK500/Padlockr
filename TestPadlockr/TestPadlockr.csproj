@@ -74,9 +74,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Prj-Padlockr\Prj-Padlockr.csproj">
+    <ProjectReference Include="..\Prj-Padlockr\Padlockr.csproj">
       <Project>{CCE0DAE7-9F9D-422F-942C-4F47D1AACD0B}</Project>
-      <Name>Prj-Padlockr</Name>
+      <Name>Padlockr</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

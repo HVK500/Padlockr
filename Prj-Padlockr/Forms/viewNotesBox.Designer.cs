@@ -1,4 +1,4 @@
-﻿namespace Prj_Padlockr.Forms
+﻿namespace Padlockr.Forms
 {
     partial class ViewNotesBox
     {

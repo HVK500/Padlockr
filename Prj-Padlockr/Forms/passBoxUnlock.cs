@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Prj_Padlockr.Forms
+namespace Padlockr.Forms
 {
     public partial class PassBoxUnlock : Form
     {

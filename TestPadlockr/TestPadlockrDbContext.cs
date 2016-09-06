@@ -3,7 +3,7 @@ using System.Linq;
 using FizzWare.NBuilder;
 using NSubstitute;
 using NUnit.Framework;
-using Prj_Padlockr;
+using Padlockr;
 using TestPadlockr.TestSupport;
 using TestPadlockr.TestSupport.DbResponses;
 

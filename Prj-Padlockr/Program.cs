@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using Prj_Padlockr.Forms;
+using Padlockr.Forms;
 
-namespace Prj_Padlockr
+namespace Padlockr
 {
     static class Program
     {

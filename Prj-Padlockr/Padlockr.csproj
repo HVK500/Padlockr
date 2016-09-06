@@ -7,7 +7,7 @@
     <ProjectGuid>{CCE0DAE7-9F9D-422F-942C-4F47D1AACD0B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Prj_Padlockr</RootNamespace>
+    <RootNamespace>Padlockr</RootNamespace>
     <AssemblyName>Padlockr</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Prj_Padlockr.Program</StartupObject>
+    <StartupObject>Padlockr.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\padlockr-ico.ico</ApplicationIcon>

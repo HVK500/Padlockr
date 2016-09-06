@@ -1,5 +1,5 @@
 ﻿using NSubstitute;
-using Prj_Padlockr;
+using Padlockr;
 
 namespace TestPadlockr.TestSupport
 {
