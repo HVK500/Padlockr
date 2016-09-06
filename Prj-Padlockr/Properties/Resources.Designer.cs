@@ -97,72 +97,38 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Default database could not be loaded. The database has been Deleted, Moved or Renamed. Set a new default database via the &quot;Set Default Database&quot; under the &quot;Database&quot; menu item..
         /// </summary>
-        internal static System.Drawing.Bitmap Clear {
+        internal static string DefaultDbNotLoaded {
             get {
-                object obj = ResourceManager.GetObject("Clear", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("DefaultDbNotLoaded", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Problem Opening Default Database.
         /// </summary>
-        internal static System.Drawing.Bitmap CopyP {
+        internal static string DefaultDbNotLoadedTitle {
             get {
-                object obj = ResourceManager.GetObject("CopyP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("DefaultDbNotLoadedTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
-        internal static System.Drawing.Bitmap CopyU {
+        internal static string Delete {
             get {
-                object obj = ResourceManager.GetObject("CopyU", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Permanently delete entry &quot;{0}&quot;?.
         /// </summary>
-        internal static System.Drawing.Bitmap DB_Create {
+        internal static string DeleteEntryConfirm {
             get {
-                object obj = ResourceManager.GetObject("DB_Create", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap DB_Open {
-            get {
-                object obj = ResourceManager.GetObject("DB_Open", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Delete {
-            get {
-                object obj = ResourceManager.GetObject("Delete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Edit {
-            get {
-                object obj = ResourceManager.GetObject("Edit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("DeleteEntryConfirm", resourceCulture);
             }
         }
         
@@ -172,26 +138,6 @@ namespace Prj_Padlockr.Properties {
         internal static string EditEntry {
             get {
                 return ResourceManager.GetString("EditEntry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Exit {
-            get {
-                object obj = ResourceManager.GetObject("Exit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Eye {
-            get {
-                object obj = ResourceManager.GetObject("Eye", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -216,9 +162,9 @@ namespace Prj_Padlockr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap key {
+        internal static System.Drawing.Bitmap ImgClear {
             get {
-                object obj = ResourceManager.GetObject("key", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgClear", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,9 +172,9 @@ namespace Prj_Padlockr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Link {
+        internal static System.Drawing.Bitmap ImgCopyP {
             get {
-                object obj = ResourceManager.GetObject("Link", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgCopyP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,9 +182,9 @@ namespace Prj_Padlockr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Lock {
+        internal static System.Drawing.Bitmap ImgCopyU {
             get {
-                object obj = ResourceManager.GetObject("Lock", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgCopyU", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,10 +192,166 @@ namespace Prj_Padlockr.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap New {
+        internal static System.Drawing.Bitmap ImgDB_Create {
             get {
-                object obj = ResourceManager.GetObject("New", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgDB_Create", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgDB_Open {
+            get {
+                object obj = ResourceManager.GetObject("ImgDB_Open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgDelete {
+            get {
+                object obj = ResourceManager.GetObject("ImgDelete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgEdit {
+            get {
+                object obj = ResourceManager.GetObject("ImgEdit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgExit {
+            get {
+                object obj = ResourceManager.GetObject("ImgExit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgEye {
+            get {
+                object obj = ResourceManager.GetObject("ImgEye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Imgkey {
+            get {
+                object obj = ResourceManager.GetObject("Imgkey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgLink {
+            get {
+                object obj = ResourceManager.GetObject("ImgLink", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgLock {
+            get {
+                object obj = ResourceManager.GetObject("ImgLock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgNew {
+            get {
+                object obj = ResourceManager.GetObject("ImgNew", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgNotes {
+            get {
+                object obj = ResourceManager.GetObject("ImgNotes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Imgpadlockr {
+            get {
+                object obj = ResourceManager.GetObject("Imgpadlockr", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ImgSpyGlass {
+            get {
+                object obj = ResourceManager.GetObject("ImgSpyGlass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to set the new database to your default?.
+        /// </summary>
+        internal static string MakeDefaultDb {
+            get {
+                return ResourceManager.GetString("MakeDefaultDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Default Database.
+        /// </summary>
+        internal static string MakeDefaultDbTitle {
+            get {
+                return ResourceManager.GetString("MakeDefaultDbTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master Password Changed.
+        /// </summary>
+        internal static string MasterPwdChanged {
+            get {
+                return ResourceManager.GetString("MasterPwdChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master password has been successfully changed..
+        /// </summary>
+        internal static string MasterPwdChangeSuccess {
+            get {
+                return ResourceManager.GetString("MasterPwdChangeSuccess", resourceCulture);
             }
         }
         
@@ -259,26 +361,6 @@ namespace Prj_Padlockr.Properties {
         internal static string NewEntry {
             get {
                 return ResourceManager.GetString("NewEntry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Notes {
-            get {
-                object obj = ResourceManager.GetObject("Notes", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap padlockr {
-            get {
-                object obj = ResourceManager.GetObject("padlockr", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -293,6 +375,15 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password incorrect!.
+        /// </summary>
+        internal static string PasswordIncorrect {
+            get {
+                return ResourceManager.GetString("PasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only paste URLs - e.g. &apos;http:\\www.google.com\&apos;.
         /// </summary>
         internal static string PasteLinkMessage {
@@ -302,12 +393,29 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to Set current database as your default?.
         /// </summary>
-        internal static System.Drawing.Bitmap SpyGlass {
+        internal static string SetCurrentDbAsDefault {
             get {
-                object obj = ResourceManager.GetObject("SpyGlass", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("SetCurrentDbAsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Default Database.
+        /// </summary>
+        internal static string SetDefaultDb {
+            get {
+                return ResourceManager.GetString("SetDefaultDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Padlockr - {0}.
+        /// </summary>
+        internal static string WindowTitle {
+            get {
+                return ResourceManager.GetString("WindowTitle", resourceCulture);
             }
         }
     }

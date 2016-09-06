@@ -206,7 +206,7 @@
             // btnMaskWatcher
             // 
             this.btnMaskWatcher.Appearance = System.Windows.Forms.Appearance.Button;
-            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.Eye;
+            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcher.Location = new System.Drawing.Point(343, 64);
             this.btnMaskWatcher.Name = "btnMaskWatcher";
             this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);

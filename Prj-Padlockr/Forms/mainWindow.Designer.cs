@@ -88,7 +88,7 @@
             // 
             // menuItemNewDatabase
             // 
-            this.menuItemNewDatabase.Image = global::Prj_Padlockr.Properties.Resources.DB_Create;
+            this.menuItemNewDatabase.Image = global::Prj_Padlockr.Properties.Resources.ImgDB_Create;
             this.menuItemNewDatabase.Name = "menuItemNewDatabase";
             this.menuItemNewDatabase.Size = new System.Drawing.Size(154, 22);
             this.menuItemNewDatabase.Text = "New Database";
@@ -96,7 +96,7 @@
             // 
             // menuItemOpenDatabase
             // 
-            this.menuItemOpenDatabase.Image = global::Prj_Padlockr.Properties.Resources.DB_Open;
+            this.menuItemOpenDatabase.Image = global::Prj_Padlockr.Properties.Resources.ImgDB_Open;
             this.menuItemOpenDatabase.Name = "menuItemOpenDatabase";
             this.menuItemOpenDatabase.Size = new System.Drawing.Size(154, 22);
             this.menuItemOpenDatabase.Text = "Open Database";
@@ -109,7 +109,7 @@
             // 
             // menuItemExit
             // 
-            this.menuItemExit.Image = global::Prj_Padlockr.Properties.Resources.Exit;
+            this.menuItemExit.Image = global::Prj_Padlockr.Properties.Resources.ImgExit;
             this.menuItemExit.Name = "menuItemExit";
             this.menuItemExit.Size = new System.Drawing.Size(154, 22);
             this.menuItemExit.Text = "Exit";
@@ -174,7 +174,7 @@
             // 
             this.btnNewEntry.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnNewEntry.Enabled = false;
-            this.btnNewEntry.Image = global::Prj_Padlockr.Properties.Resources.New;
+            this.btnNewEntry.Image = global::Prj_Padlockr.Properties.Resources.ImgNew;
             this.btnNewEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNewEntry.Name = "btnNewEntry";
             this.btnNewEntry.Size = new System.Drawing.Size(23, 22);
@@ -185,7 +185,7 @@
             // 
             this.btnEditEntry.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnEditEntry.Enabled = false;
-            this.btnEditEntry.Image = global::Prj_Padlockr.Properties.Resources.Edit;
+            this.btnEditEntry.Image = global::Prj_Padlockr.Properties.Resources.ImgEdit;
             this.btnEditEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditEntry.Name = "btnEditEntry";
             this.btnEditEntry.Size = new System.Drawing.Size(23, 22);
@@ -196,7 +196,7 @@
             // 
             this.btnDeleteEntry.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnDeleteEntry.Enabled = false;
-            this.btnDeleteEntry.Image = global::Prj_Padlockr.Properties.Resources.Delete;
+            this.btnDeleteEntry.Image = global::Prj_Padlockr.Properties.Resources.ImgDelete;
             this.btnDeleteEntry.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDeleteEntry.Name = "btnDeleteEntry";
             this.btnDeleteEntry.Size = new System.Drawing.Size(23, 22);
@@ -212,7 +212,7 @@
             // 
             this.btnCopyUsername.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnCopyUsername.Enabled = false;
-            this.btnCopyUsername.Image = global::Prj_Padlockr.Properties.Resources.CopyU;
+            this.btnCopyUsername.Image = global::Prj_Padlockr.Properties.Resources.ImgCopyU;
             this.btnCopyUsername.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopyUsername.Name = "btnCopyUsername";
             this.btnCopyUsername.Size = new System.Drawing.Size(23, 22);
@@ -223,7 +223,7 @@
             // 
             this.btnCopyPassword.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnCopyPassword.Enabled = false;
-            this.btnCopyPassword.Image = global::Prj_Padlockr.Properties.Resources.CopyP;
+            this.btnCopyPassword.Image = global::Prj_Padlockr.Properties.Resources.ImgCopyP;
             this.btnCopyPassword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopyPassword.Name = "btnCopyPassword";
             this.btnCopyPassword.Size = new System.Drawing.Size(23, 22);
@@ -234,7 +234,7 @@
             // 
             this.btnVisitLink.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnVisitLink.Enabled = false;
-            this.btnVisitLink.Image = global::Prj_Padlockr.Properties.Resources.Link;
+            this.btnVisitLink.Image = global::Prj_Padlockr.Properties.Resources.ImgLink;
             this.btnVisitLink.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnVisitLink.Name = "btnVisitLink";
             this.btnVisitLink.Size = new System.Drawing.Size(23, 22);
@@ -245,7 +245,7 @@
             // 
             this.btnViewNotes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnViewNotes.Enabled = false;
-            this.btnViewNotes.Image = global::Prj_Padlockr.Properties.Resources.Notes;
+            this.btnViewNotes.Image = global::Prj_Padlockr.Properties.Resources.ImgNotes;
             this.btnViewNotes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnViewNotes.Name = "btnViewNotes";
             this.btnViewNotes.Size = new System.Drawing.Size(23, 22);
@@ -261,7 +261,7 @@
             // 
             this.lblSpyGlass.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.lblSpyGlass.Enabled = false;
-            this.lblSpyGlass.Image = global::Prj_Padlockr.Properties.Resources.SpyGlass;
+            this.lblSpyGlass.Image = global::Prj_Padlockr.Properties.Resources.ImgSpyGlass;
             this.lblSpyGlass.Name = "lblSpyGlass";
             this.lblSpyGlass.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.lblSpyGlass.Size = new System.Drawing.Size(22, 22);
@@ -279,7 +279,7 @@
             // 
             this.btnClearSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnClearSearch.Enabled = false;
-            this.btnClearSearch.Image = global::Prj_Padlockr.Properties.Resources.Clear;
+            this.btnClearSearch.Image = global::Prj_Padlockr.Properties.Resources.ImgClear;
             this.btnClearSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnClearSearch.Name = "btnClearSearch";
             this.btnClearSearch.Size = new System.Drawing.Size(23, 22);

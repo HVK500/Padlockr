@@ -79,7 +79,7 @@
             // 
             // picLock
             // 
-            this.picLock.Image = global::Prj_Padlockr.Properties.Resources.Lock;
+            this.picLock.Image = global::Prj_Padlockr.Properties.Resources.ImgLock;
             this.picLock.InitialImage = null;
             this.picLock.Location = new System.Drawing.Point(-13, 12);
             this.picLock.Name = "picLock";
@@ -91,7 +91,7 @@
             // btnMaskWatcher
             // 
             this.btnMaskWatcher.Enabled = false;
-            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.Eye;
+            this.btnMaskWatcher.Image = global::Prj_Padlockr.Properties.Resources.ImgEye;
             this.btnMaskWatcher.Location = new System.Drawing.Point(353, 49);
             this.btnMaskWatcher.Name = "btnMaskWatcher";
             this.btnMaskWatcher.Size = new System.Drawing.Size(18, 22);
