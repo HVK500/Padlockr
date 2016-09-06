@@ -31,7 +31,7 @@ namespace Prj_Padlockr.Forms
             {
                 if (File.Exists(Settings.Default.defaultDBpath))
                 {
-                    var pbU = new passBoxUnlock();
+                    var pbU = new PassBoxUnlock();
                     var v = false;
                     while (v == false)
                     {
@@ -152,7 +152,7 @@ namespace Prj_Padlockr.Forms
 
             // todo: move into better place
             // todo: [Matt] What is V??
-            var pbU = new passBoxUnlock();
+            var pbU = new PassBoxUnlock();
             var v = false;
 
             while (v == false)
@@ -367,7 +367,7 @@ namespace Prj_Padlockr.Forms
             if (listBox.SelectedIndex == -1)
                 return;
 
-            var vn = new viewNotesBox
+            var vn = new ViewNotesBox
             {
                 notesTxtBox =
                 {

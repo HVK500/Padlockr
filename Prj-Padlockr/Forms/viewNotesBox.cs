@@ -2,9 +2,9 @@
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class viewNotesBox : Form
+    public partial class ViewNotesBox : Form
     {
-        public viewNotesBox()
+        public ViewNotesBox()
         {
             InitializeComponent();
         }

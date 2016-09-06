@@ -1,6 +1,6 @@
 ﻿namespace Prj_Padlockr.Forms
 {
-    partial class viewNotesBox
+    partial class ViewNotesBox
     {
         /// <summary>
         /// Required designer variable.
@@ -61,7 +61,7 @@
             this.Controls.Add(this.notesTxtBox);
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "viewNotesBox";
+            this.Name = "ViewNotesBox";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "View Notes";

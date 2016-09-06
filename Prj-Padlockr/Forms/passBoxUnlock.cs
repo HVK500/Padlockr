@@ -1,11 +1,10 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class passBoxUnlock : Form
+    public partial class PassBoxUnlock : Form
     {
-        public passBoxUnlock()
+        public PassBoxUnlock()
         {
             InitializeComponent();
         }
@@ -22,16 +21,16 @@ namespace Prj_Padlockr.Forms
 
         private void maskedMasterTextBox_TextChanged(object sender, System.EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(maskedMasterTextBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(maskedMasterTextBox.Text) == false)
             {
                 btnMaskWatcher.Enabled = true;
                 btnUnlock.Enabled = true;
+
+                return;
             }
-            else
-            {
-                btnMaskWatcher.Enabled = false;
-                btnUnlock.Enabled = false;
-            }
+
+            btnMaskWatcher.Enabled = false;
+            btnUnlock.Enabled = false;
         }
 
     }

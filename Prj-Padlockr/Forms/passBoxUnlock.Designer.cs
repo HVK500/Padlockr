@@ -1,6 +1,6 @@
 ﻿namespace Prj_Padlockr.Forms
 {
-    partial class passBoxUnlock
+    partial class PassBoxUnlock
     {
         /// <summary>
         /// Required designer variable.
@@ -126,7 +126,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUnlock);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "passBoxUnlock";
+            this.Name = "PassBoxUnlock";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enter Master Password";
