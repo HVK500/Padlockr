@@ -205,7 +205,7 @@ namespace Prj_Padlockr.Forms
         private void menuItemChangeMasterPassword_Click(object sender, EventArgs e)
         {
             // Change your DB Master password
-            var pBc = new passBoxChange(DbContext);
+            var pBc = new PassBoxChange(DbContext);
 
             if (pBc.ShowDialog() == DialogResult.OK)
             {

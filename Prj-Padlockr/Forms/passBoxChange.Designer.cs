@@ -1,6 +1,6 @@
 ﻿namespace Prj_Padlockr.Forms
 {
-    partial class passBoxChange
+    partial class PassBoxChange
     {
         /// <summary>
         /// Required designer variable.
@@ -212,7 +212,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.picKey);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "passBoxChange";
+            this.Name = "PassBoxChange";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Change Master Password";
             this.TopMost = true;
@@ -242,7 +242,7 @@
         private IPadlockrDbContext dbContext;
 
         // Parse the dbContext object through the passBoxChange dialog
-        public passBoxChange(IPadlockrDbContext dbContext)
+        public PassBoxChange(IPadlockrDbContext dbContext)
         {
             InitializeComponent();
             this.dbContext = dbContext;

@@ -97,6 +97,15 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default database could not be loaded. The database has been Deleted, Moved or Renamed. Set a new default database via the &quot;Set Default Database&quot; under the &quot;Database&quot; menu item..
         /// </summary>
         internal static string DefaultDbNotLoaded {
@@ -365,12 +374,30 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New password must be different!.
+        /// </summary>
+        internal static string NewPassMustDiffer {
+            get {
+                return ResourceManager.GetString("NewPassMustDiffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon padlockr_ico {
             get {
                 object obj = ResourceManager.GetObject("padlockr_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords do not match!.
+        /// </summary>
+        internal static string PassDontMatch {
+            get {
+                return ResourceManager.GetString("PassDontMatch", resourceCulture);
             }
         }
         

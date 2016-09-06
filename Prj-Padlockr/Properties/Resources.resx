@@ -229,7 +229,16 @@
   <data name="WindowTitle" xml:space="preserve">
     <value>Padlockr - {0}</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="NewPassMustDiffer" xml:space="preserve">
+    <value>New password must be different!</value>
+  </data>
+  <data name="PassDontMatch" xml:space="preserve">
+    <value>Passwords do not match!</value>
   </data>
 </root>

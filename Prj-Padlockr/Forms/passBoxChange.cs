@@ -1,50 +1,31 @@
 ﻿using System;
 using System.Windows.Forms;
+using Prj_Padlockr.Properties;
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class passBoxChange : Form
+    public partial class PassBoxChange : Form
     {
-        // Component initialization is found in the "passBoxchange.Designer.cs" file
-        //public passBoxChange()
-        //{
-        //    InitializeComponent();
-        //}
-
         private void maskedOldBox_TextChanged(object sender, EventArgs e)
         {
             // Validates the controls 
-            formValidation();
+            FormValidation();
         }
 
         private void maskedNewBox_TextChanged(object sender, EventArgs e)
         {
             // Validates the controls 
-            formValidation();
+            FormValidation();
 
-            if (maskedRnewBox.Text != maskedNewBox.Text)
-            {
-                lblNewPassValidation.Text = "Passwords do not match!";
-            }
-            else
-            {
-                lblNewPassValidation.Text = "";
-            }
+            lblNewPassValidation.Text = maskedRnewBox.Text != maskedNewBox.Text ? Resources.PassDontMatch : string.Empty;
         }
 
         private void maskedRnewBox_TextChanged(object sender, EventArgs e)
         {
             // Validates the controls 
-            formValidation();
+            FormValidation();
 
-            if (maskedRnewBox.Text != maskedNewBox.Text)
-            {
-                lblNewPassValidation.Text = "Passwords do not match!";
-            }
-            else
-            {
-                lblNewPassValidation.Text = "";
-            }
+            lblNewPassValidation.Text = maskedRnewBox.Text != maskedNewBox.Text ? Resources.PassDontMatch : string.Empty;
         }
 
         private void btnMaskWatcherOld_MouseDown(object sender, MouseEventArgs e)
@@ -79,47 +60,48 @@ namespace Prj_Padlockr.Forms
 
         private void passBoxChange_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (DialogResult.ToString() != "Cancel")
+            if (DialogResult.ToString() == Resources.Cancel)
+                return;
+
+            if (dbContext.PassCheck(maskedOldBox.Text) == true)
             {
-                if (dbContext.PassCheck(maskedOldBox.Text) == true)
-                {
-                    lblOpassValidation.Text = "";
+                lblOpassValidation.Text = "";
                     
-                    if (maskedRnewBox.Text == maskedNewBox.Text)
+                if (maskedRnewBox.Text == maskedNewBox.Text)
+                {
+                    if (maskedOldBox.Text != maskedNewBox.Text)
                     {
-                        if (maskedOldBox.Text != maskedNewBox.Text)
-                        {
-                            dbContext.ChangePass(maskedNewBox.Text);
-                        }
-                        else
-                        {
-                            e.Cancel = true;
-                            lblNewPassValidation.Text = "New password must be different!";
-                        }
-                        
+                        dbContext.ChangePass(maskedNewBox.Text);
                     }
                     else
                     {
                         e.Cancel = true;
+                        lblNewPassValidation.Text = Resources.NewPassMustDiffer;
                     }
+                        
                 }
                 else
                 {
                     e.Cancel = true;
-                    lblOpassValidation.Text = "Password is incorrect!";
                 }
+
+                return;
             }
+
+            e.Cancel = true;
+            lblOpassValidation.Text = Resources.PasswordIncorrect;
         }
 
-        private void formValidation()
+        // todo: optimize validation
+        private void FormValidation()
         {
-            if (String.IsNullOrWhiteSpace(maskedOldBox.Text) == false) // not empty
+            if (string.IsNullOrWhiteSpace(maskedOldBox.Text) == false) // not empty
             {
                 // maskedOldBox
                 btnMaskWatcherOld.Enabled = true;
                 maskedNewBox.Enabled = true;
 
-                if (String.IsNullOrWhiteSpace(maskedNewBox.Text) == false) // not empty
+                if (string.IsNullOrWhiteSpace(maskedNewBox.Text) == false) // not empty
                 {
                     // maskedNewBox
                     btnMaskWatcherOld.Enabled = true;
@@ -127,7 +109,7 @@ namespace Prj_Padlockr.Forms
                     maskedRnewBox.Enabled = true;
 
 
-                    if (String.IsNullOrWhiteSpace(maskedRnewBox.Text) == false) // not empty
+                    if (string.IsNullOrWhiteSpace(maskedRnewBox.Text) == false) // not empty
                     {
                         // maskedRnewBox
                         btnMaskWatcherOld.Enabled = true;
