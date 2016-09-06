@@ -96,72 +96,72 @@
     <Compile Include="Forms\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\entryAddBox.cs">
+    <Compile Include="Forms\EntryAddBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\entryAddBox.Designer.cs">
-      <DependentUpon>entryAddBox.cs</DependentUpon>
+    <Compile Include="Forms\EntryAddBox.Designer.cs">
+      <DependentUpon>EntryAddBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\generatePassBox.cs">
+    <Compile Include="Forms\GeneratePassBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\generatePassBox.Designer.cs">
-      <DependentUpon>generatePassBox.cs</DependentUpon>
+    <Compile Include="Forms\GeneratePassBox.Designer.cs">
+      <DependentUpon>GeneratePassBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\mainWindow.cs">
+    <Compile Include="Forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\mainWindow.Designer.cs">
-      <DependentUpon>mainWindow.cs</DependentUpon>
+    <Compile Include="Forms\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\passBoxChange.cs">
+    <Compile Include="Forms\PassBoxChange.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\passBoxChange.Designer.cs">
-      <DependentUpon>passBoxChange.cs</DependentUpon>
+    <Compile Include="Forms\PassBoxChange.Designer.cs">
+      <DependentUpon>PassBoxChange.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\passBoxLock.cs">
+    <Compile Include="Forms\PassBoxLock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\passBoxLock.Designer.cs">
-      <DependentUpon>passBoxLock.cs</DependentUpon>
+    <Compile Include="Forms\PassBoxLock.Designer.cs">
+      <DependentUpon>PassBoxLock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\passBoxUnlock.cs">
+    <Compile Include="Forms\PassBoxUnlock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\passBoxUnlock.Designer.cs">
-      <DependentUpon>passBoxUnlock.cs</DependentUpon>
+    <Compile Include="Forms\PassBoxUnlock.Designer.cs">
+      <DependentUpon>PassBoxUnlock.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PadlockrDbContext.cs" />
-    <Compile Include="Forms\viewNotesBox.cs">
+    <Compile Include="Forms\ViewNotesBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\viewNotesBox.Designer.cs">
-      <DependentUpon>viewNotesBox.cs</DependentUpon>
+    <Compile Include="Forms\ViewNotesBox.Designer.cs">
+      <DependentUpon>ViewNotesBox.cs</DependentUpon>
     </Compile>
     <Compile Include="SqliteWrapper.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\entryAddBox.resx">
-      <DependentUpon>entryAddBox.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\EntryAddBox.resx">
+      <DependentUpon>EntryAddBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\generatePassBox.resx">
-      <DependentUpon>generatePassBox.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\GeneratePassBox.resx">
+      <DependentUpon>GeneratePassBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\mainWindow.resx">
-      <DependentUpon>mainWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\passBoxChange.resx">
-      <DependentUpon>passBoxChange.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PassBoxChange.resx">
+      <DependentUpon>PassBoxChange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\passBoxLock.resx">
-      <DependentUpon>passBoxLock.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PassBoxLock.resx">
+      <DependentUpon>PassBoxLock.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\passBoxUnlock.resx">
-      <DependentUpon>passBoxUnlock.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\PassBoxUnlock.resx">
+      <DependentUpon>PassBoxUnlock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -173,8 +173,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Forms\viewNotesBox.resx">
-      <DependentUpon>viewNotesBox.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ViewNotesBox.resx">
+      <DependentUpon>ViewNotesBox.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
