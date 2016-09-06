@@ -142,6 +142,7 @@
       <DependentUpon>ViewNotesBox.cs</DependentUpon>
     </Compile>
     <Compile Include="SqliteWrapper.cs" />
+    <Compile Include="Utils\PasswordGenerator.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

@@ -69,6 +69,7 @@
     <Compile Include="TestPadlockrDbContext.cs" />
     <Compile Include="TestSupport\Builder.cs" />
     <Compile Include="TestSupport\DbMocker.cs" />
+    <Compile Include="Utils\TestPasswordGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
