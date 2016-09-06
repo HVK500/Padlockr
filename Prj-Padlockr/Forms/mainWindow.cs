@@ -108,7 +108,7 @@ namespace Prj_Padlockr.Forms
             var dbDir = saveDatabaseDialog.FileName;
                 
             // Create a new passBoxLock instance to parse the password back from the firstMaskedTextBox
-            var pbL = new passBoxLock();
+            var pbL = new PassBoxLock();
 
             if (pbL.ShowDialog() != DialogResult.OK)
                 return;

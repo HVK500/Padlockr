@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using Prj_Padlockr.Properties;
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class passBoxLock : Form
+    public partial class PassBoxLock : Form
     {
-        public passBoxLock()
+        public PassBoxLock()
         {
             InitializeComponent();
         }
@@ -31,17 +32,16 @@ namespace Prj_Padlockr.Forms
 
         private void firstMaskedTextBox_TextChanged(object sender, System.EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(firstMaskedTextBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(firstMaskedTextBox.Text) == false)
             {
                 btnMaskWatcher1.Enabled = true;
                 secondMaskedTextBox.Enabled = true;
+                return;
             }
-            else
-            {
-                btnMaskWatcher1.Enabled = false;
-                secondMaskedTextBox.Text = "";
-                secondMaskedTextBox.Enabled = false;
-            }
+
+            btnMaskWatcher1.Enabled = false;
+            secondMaskedTextBox.Text = "";
+            secondMaskedTextBox.Enabled = false;
         }
 
         private void btnMaskWatcher2_MouseDown(object sender, MouseEventArgs e)
@@ -56,24 +56,24 @@ namespace Prj_Padlockr.Forms
 
         private void secondMaskedTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(secondMaskedTextBox.Text) == false)
+            if (string.IsNullOrWhiteSpace(secondMaskedTextBox.Text) == false)
             {
                 btnMaskWatcher2.Enabled = true;
                 if (firstMaskedTextBox.Text != secondMaskedTextBox.Text)
                 {
-                    lblValidation.Text = "Does not match!";
+                    lblValidation.Text = Resources.DosntMatch;
                 }
                 else
                 {
                     lblValidation.Text = "";
                     btnSet.Enabled = true;
                 }
+
+                return;
             }
-            else
-            {
-                btnMaskWatcher2.Enabled = false;
-                lblValidation.Text = "";
-            }
+
+            btnMaskWatcher2.Enabled = false;
+            lblValidation.Text = "";
         }
     }
 }

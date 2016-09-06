@@ -235,6 +235,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DosntMatch" xml:space="preserve">
+    <value>Does not match!</value>
+  </data>
   <data name="NewPassMustDiffer" xml:space="preserve">
     <value>New password must be different!</value>
   </data>

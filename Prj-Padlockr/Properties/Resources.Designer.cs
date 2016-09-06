@@ -142,6 +142,15 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Does not match!.
+        /// </summary>
+        internal static string DosntMatch {
+            get {
+                return ResourceManager.GetString("DosntMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Entry.
         /// </summary>
         internal static string EditEntry {
