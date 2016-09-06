@@ -175,4 +175,19 @@
   <data name="AccountWithNameExistsTitle" xml:space="preserve">
     <value>Account Already Exists</value>
   </data>
+  <data name="EditEntry" xml:space="preserve">
+    <value>Edit Entry</value>
+  </data>
+  <data name="PasteLinkMessage" xml:space="preserve">
+    <value>Only paste URLs - e.g. 'http:\\www.google.com\'</value>
+  </data>
+  <data name="AboutCopy" xml:space="preserve">
+    <value>Copyright © {0} - Matthew Laird, alias HVK</value>
+  </data>
+  <data name="AboutVersion" xml:space="preserve">
+    <value>Version {0}.{1} build{2} r{3}</value>
+  </data>
+  <data name="NewEntry" xml:space="preserve">
+    <value>New Entry</value>
+  </data>
 </root>

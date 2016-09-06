@@ -2,20 +2,25 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
+using Prj_Padlockr.Properties;
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class aboutBox : Form
+    public partial class AboutBox : Form
     {
-        public aboutBox()
+        public AboutBox()
         {
             InitializeComponent();
         }
 
         private void aboutBox_Load(object sender, EventArgs e)
-        {       
-            lblCopyright.Text = "Copyright © " + DateTime.Today.Year.ToString() + " - Matthew Laird, alias HVK";
-            lblAboutVer.Text = "Version " + Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + " build" + Assembly.GetExecutingAssembly().GetName().Version.Build + " r" + Assembly.GetExecutingAssembly().GetName().Version.Revision;
+        {
+            var appVersion = Assembly.GetExecutingAssembly().GetName().Version;
+
+            lblCopyright.Text = string.Format(Resources.AboutCopy, DateTime.Now.Year);
+
+            lblAboutVer.Text = string.Format(Resources.AboutVersion,
+                appVersion.Major, appVersion.Minor, appVersion.Build, appVersion.Revision);
         }
 
         private void lnkCC_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

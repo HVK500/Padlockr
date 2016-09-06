@@ -61,6 +61,24 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copyright © {0} - Matthew Laird, alias HVK.
+        /// </summary>
+        internal static string AboutCopy {
+            get {
+                return ResourceManager.GetString("AboutCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version {0}.{1} build{2} r{3}.
+        /// </summary>
+        internal static string AboutVersion {
+            get {
+                return ResourceManager.GetString("AboutVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An account with the name &apos;{0}&apos; already exists..
         /// </summary>
         internal static string AccountWithNameExists {
@@ -149,6 +167,15 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Entry.
+        /// </summary>
+        internal static string EditEntry {
+            get {
+                return ResourceManager.GetString("EditEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Exit {
@@ -209,6 +236,15 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Entry.
+        /// </summary>
+        internal static string NewEntry {
+            get {
+                return ResourceManager.GetString("NewEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Notes {
@@ -235,6 +271,15 @@ namespace Prj_Padlockr.Properties {
             get {
                 object obj = ResourceManager.GetObject("padlockr_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only paste URLs - e.g. &apos;http:\\www.google.com\&apos;.
+        /// </summary>
+        internal static string PasteLinkMessage {
+            get {
+                return ResourceManager.GetString("PasteLinkMessage", resourceCulture);
             }
         }
         

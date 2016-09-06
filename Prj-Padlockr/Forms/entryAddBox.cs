@@ -1,37 +1,31 @@
 ﻿using System;
-using System.Data;
 using System.Windows.Forms;
+using Prj_Padlockr.Properties;
 
 namespace Prj_Padlockr.Forms
 {
-    public partial class entryAddBox : Form
+    public partial class EntryAddBox : Form
     {
-        // In "entryAddBox.Designer.cs" at the bottom is the initialization of the "Add Entry" / "Edit Entry" dialog
-        //public entryAddBox()
-        //{
-        //    InitializeComponent();
-        //}
-
         private void entryAddBox_Load(object sender, EventArgs e)
         {
-            if (Text == "Edit Entry")
+            if (Text == Resources.EditEntry)
             {
                 accNameTxtBox.Enabled = false;
             }
         }
 
-        private void passMaskedBox_TextChanged(object sender, System.EventArgs e)
+        private void passMaskedBox_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
             {
                 btnMaskWatcher.Enabled = true;
                 btnSubmit.Enabled = true;
+
+                return;
             }
-            else
-            {
-                btnMaskWatcher.Enabled = false;
-                btnSubmit.Enabled = false;
-            }
+
+            btnMaskWatcher.Enabled = false;
+            btnSubmit.Enabled = false;
         }
 
         private void btnMaskWatcher_CheckedChanged(object sender, EventArgs e)
@@ -40,7 +34,7 @@ namespace Prj_Padlockr.Forms
             {
                 passMaskedTextBox.UseSystemPasswordChar = true;
             }
-            else if (btnMaskWatcher.Checked == true)
+            else if (btnMaskWatcher.Checked)
             {
                 passMaskedTextBox.UseSystemPasswordChar = false;
             }
@@ -51,29 +45,32 @@ namespace Prj_Padlockr.Forms
             if (string.IsNullOrWhiteSpace(accNameTxtBox.Text) == false)
             {
                 userNameTxtBox.Enabled = true;
+
                 if (string.IsNullOrWhiteSpace(userNameTxtBox.Text) == false)
                 {
                     userNameTxtBox.Enabled = true;
                 }
+
                 if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     passMaskedTextBox.Enabled = true;
                     btnMaskWatcher.Enabled = true;
                     btnGenerate.Enabled = true;
                 }
+
                 if (string.IsNullOrWhiteSpace(userNameTxtBox.Text) == false && string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     btnSubmit.Enabled = true;
                 }
+
+                return;
             }
-            else
-            {
-                userNameTxtBox.Enabled = false;
-                passMaskedTextBox.Enabled = false;
-                btnMaskWatcher.Enabled = false;
-                btnGenerate.Enabled = false;
-                btnSubmit.Enabled = false;
-            }
+
+            userNameTxtBox.Enabled = false;
+            passMaskedTextBox.Enabled = false;
+            btnMaskWatcher.Enabled = false;
+            btnGenerate.Enabled = false;
+            btnSubmit.Enabled = false;
         }
 
         private void userNameTxtBox_TextChanged(object sender, EventArgs e)
@@ -82,23 +79,25 @@ namespace Prj_Padlockr.Forms
             {
                 passMaskedTextBox.Enabled = true;
                 btnGenerate.Enabled = true;
+
                 if (string.IsNullOrWhiteSpace(passMaskedTextBox.Text) == false)
                 {
                     btnSubmit.Enabled = true;
                 }
+
+                return;
             }
-            else
-            {
-                passMaskedTextBox.Enabled = false;
-                btnGenerate.Enabled = false;
-                btnSubmit.Enabled = false;
-            }
+
+            passMaskedTextBox.Enabled = false;
+            btnGenerate.Enabled = false;
+            btnSubmit.Enabled = false;
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             // Generate a password in the password creation window
             var gPb = new generatePassBox();
+
             if (gPb.ShowDialog() == DialogResult.OK)
             {
                 // Get generated password from txtBoxGen
@@ -110,35 +109,27 @@ namespace Prj_Padlockr.Forms
         {
             // Paste link from clipboard only if it contains a link format!
             var cbText = Clipboard.GetText();
-            if (cbText.Contains("http://") == true || cbText.Contains("https://") == true)
+
+            if (cbText.Contains("http://") || cbText.Contains("https://"))
             {
                 linkTxtBox.Text = cbText;
-                lblLinkVal.Text = "";
+                lblLinkVal.Text = string.Empty;
+                return;
             }
-            else
-            {
-                lblLinkVal.Text = "Only paste URLs - e.g. 'http:\\www.google.com\'";
-            }
+
+            lblLinkVal.Text = Resources.PasteLinkMessage;
         }
 
         private void btnClearLink_Click(object sender, EventArgs e)
         {
-            linkTxtBox.Text = "";
+            linkTxtBox.Text = string.Empty;
         }
 
         private void linkTxtBox_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(linkTxtBox.Text) == false)
-            {
-                btnClearLink.Enabled = true;
-            }
-            else
-            {
-                btnClearLink.Enabled = false;
-            }
+            btnClearLink.Enabled = string.IsNullOrWhiteSpace(linkTxtBox.Text) == false;
         }
 
-        // todo: add tests
         // Checks whether ACC_NAME already exists before closing the dialog
         private void entryAddBox_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -152,12 +143,12 @@ namespace Prj_Padlockr.Forms
             if (!dbContext.AccountExists(accNameTxtBox.Text))
                 return;
 
-            if (Text != "New Entry")
+            if (Text != Resources.NewEntry)
                 return;
 
             e.Cancel = true;
-            var errorMsg = string.Format(Properties.Resources.AccountWithNameExists, accNameTxtBox);
-            MessageBox.Show(errorMsg, Properties.Resources.AccountWithNameExistsTitle);
+            var errorMsg = string.Format(Resources.AccountWithNameExists, accNameTxtBox);
+            MessageBox.Show(errorMsg, Resources.AccountWithNameExistsTitle);
         }
     }
 }

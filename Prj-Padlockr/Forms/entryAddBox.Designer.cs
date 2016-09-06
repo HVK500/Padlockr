@@ -1,6 +1,6 @@
 ﻿namespace Prj_Padlockr.Forms
 {
-    partial class entryAddBox
+    partial class EntryAddBox
     {
         /// <summary>
         /// Required designer variable.
@@ -238,7 +238,7 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "entryAddBox";
+            this.Name = "EntryAddBox";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -270,7 +270,7 @@
         private IPadlockrDbContext dbContext;
 
         // Parse the dbContext object to the dialog window
-        public entryAddBox(IPadlockrDbContext dbContext)
+        public EntryAddBox(IPadlockrDbContext dbContext)
         {
             InitializeComponent();
             this.dbContext = dbContext;

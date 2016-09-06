@@ -78,7 +78,7 @@ namespace Prj_Padlockr.Forms
 
         private void menuItemAbout_Click(object sender, EventArgs e)
         {
-            new aboutBox().ShowDialog();
+            new AboutBox().ShowDialog();
         }
 
         private void menuItemExit_Click(object sender, EventArgs e)
@@ -207,7 +207,7 @@ namespace Prj_Padlockr.Forms
         private void btnNewEntry_Click(object sender, EventArgs e)
         {
             // Add new enties in to the PDB Table of the open DB - (Added constructor to pass the liteDB object through)
-            var ne = new entryAddBox(DbContext);
+            var ne = new EntryAddBox(DbContext);
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
@@ -224,7 +224,7 @@ namespace Prj_Padlockr.Forms
             // Edit enties in to the PDB Table of the open DB
             if (listBox.SelectedIndex != -1)
             {
-                var ee = new entryAddBox(DbContext);
+                var ee = new EntryAddBox(DbContext);
                 // Change the title of the dialog to "Edit"
                 ee.Text = "Edit Entry";
 
