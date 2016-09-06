@@ -1,6 +1,6 @@
 ﻿namespace Prj_Padlockr.Forms
 {
-    partial class generatePassBox
+    partial class GeneratePassBox
     {
         /// <summary>
         /// Required designer variable.
@@ -192,7 +192,7 @@
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "generatePassBox";
+            this.Name = "GeneratePassBox";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

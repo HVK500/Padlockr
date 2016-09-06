@@ -196,6 +196,24 @@ namespace Prj_Padlockr.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to At least one option needs to be selected..
+        /// </summary>
+        internal static string GenPassOptionMissing {
+            get {
+                return ResourceManager.GetString("GenPassOptionMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Character Selection.
+        /// </summary>
+        internal static string GenPassOptionMissingTitle {
+            get {
+                return ResourceManager.GetString("GenPassOptionMissingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap key {

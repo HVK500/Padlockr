@@ -96,7 +96,7 @@ namespace Prj_Padlockr.Forms
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             // Generate a password in the password creation window
-            var gPb = new generatePassBox();
+            var gPb = new GeneratePassBox();
 
             if (gPb.ShowDialog() == DialogResult.OK)
             {

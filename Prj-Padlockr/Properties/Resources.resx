@@ -190,4 +190,10 @@
   <data name="NewEntry" xml:space="preserve">
     <value>New Entry</value>
   </data>
+  <data name="GenPassOptionMissing" xml:space="preserve">
+    <value>At least one option needs to be selected.</value>
+  </data>
+  <data name="GenPassOptionMissingTitle" xml:space="preserve">
+    <value>Character Selection</value>
+  </data>
 </root>
