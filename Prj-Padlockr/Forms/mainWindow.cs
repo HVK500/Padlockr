@@ -339,8 +339,9 @@ namespace Padlockr.Forms
                 btnCopyUsername.Enabled = true;
 
                 // Check whether the selected item has a link saved
-                btnVisitLink.Enabled = string.IsNullOrWhiteSpace(GetColData("LINK")) == false;
-                btnViewNotes.Enabled = string.IsNullOrWhiteSpace(GetColData("NOTES")) == false;
+                var currentEntry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+                btnVisitLink.Enabled = string.IsNullOrWhiteSpace(currentEntry.Link) == false;
+                btnViewNotes.Enabled = string.IsNullOrWhiteSpace(currentEntry.Notes) == false;
                 
             }
             else if (listBox.SelectedIndex == -1)
@@ -360,11 +361,13 @@ namespace Padlockr.Forms
             if (listBox.SelectedIndex == -1)
                 return;
 
+            var currentEntry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+
             var vn = new ViewNotesBox
             {
                 notesTxtBox =
                 {
-                    Text = GetColData("NOTES")
+                    Text = currentEntry.Notes
                 }
             };
 
@@ -374,28 +377,31 @@ namespace Padlockr.Forms
         // Opens up the link in the browser
         private void btnVisitLink_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
-            {
-                Process.Start(GetColData("LINK"));
-            }
+            if (listBox.SelectedIndex == -1)
+                return;
+
+            var currentEntry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+            Process.Start(currentEntry.Link);
         }
 
         // Copies the Password of the selected DB item to the clipboard
         private void btnCopyPassword_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
-            {
-                Clipboard.SetText(GetColData("PASS"));
-            }
+            if (listBox.SelectedIndex == -1)
+                return;
+
+            var currentEntry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+            Clipboard.SetText(currentEntry.Password);
         }
 
         // Copies the Username of the selected DB item to the clipboard
         private void btnCopyUsername_Click(object sender, EventArgs e)
         {
-            if (listBox.SelectedIndex != -1)
-            {
-                Clipboard.SetText(GetColData("USER_NAME"));
-            }
+            if (listBox.SelectedIndex == -1)
+                return;
+
+            var currentEntry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+            Clipboard.SetText(currentEntry.Username);
         }
 
         // Clears the searchbox text
@@ -423,16 +429,6 @@ namespace Padlockr.Forms
             btnNewEntry.Enabled = false;
             menuItemChangeMasterPassword.Enabled = false;
             menuItemSetDefaultDatabase.Enabled = false;
-        }
-
-        //TODO: Opitimise! Retrieve specific column data
-        private string GetColData(string field)
-        {
-            // todo: move into DB class
-            var dt = DbContext.GetDataTable("SELECT " + field + " FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
-            var dr = dt.Rows[dt.Rows.Count - 1];
-
-            return dr[field].ToString();
         }
 
         private void    PopulateListBox(IReadOnlyCollection<string> accounts)
