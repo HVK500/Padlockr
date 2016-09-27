@@ -132,6 +132,7 @@
     <Compile Include="Forms\PassBoxUnlock.Designer.cs">
       <DependentUpon>PassBoxUnlock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\PasswordEntry.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PadlockrDbContext.cs" />

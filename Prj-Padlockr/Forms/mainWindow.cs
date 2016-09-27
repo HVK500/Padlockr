@@ -239,23 +239,18 @@ namespace Padlockr.Forms
                 Text = Resources.EditEntry
             };
 
-            //TODO: Optimise!
-            // todo: move into DB class
-            var dt = DbContext.GetDataTable("SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + listBox.SelectedItem + "';");
+            // Check to see if we have a entry to work with
+            var entry = DbContext.GetPasswordEntry(listBox.SelectedItem.ToString());
+            if (entry == null) return;
 
-            if (dt.Rows.Count == 0)
-                return;
-
-            // todo: move into DB class
-            var dr = dt.Rows[dt.Rows.Count - 1];
-            var oldAccName = dr["ACC_NAME"].ToString();
+            var oldAccName = entry.AccountName;
 
             // Print out the read information to the Edit Entry Box
             ee.accNameTxtBox.Text = oldAccName;
-            ee.userNameTxtBox.Text = dr["USER_NAME"].ToString();
-            ee.passMaskedTextBox.Text = dr["PASS"].ToString();
-            ee.linkTxtBox.Text = dr["LINK"].ToString();
-            ee.notesTxtBox.Text = dr["NOTES"].ToString();
+            ee.userNameTxtBox.Text = entry.Username;
+            ee.passMaskedTextBox.Text = entry.Password;
+            ee.linkTxtBox.Text = entry.Link;
+            ee.notesTxtBox.Text = entry.Notes;
 
             if (ee.ShowDialog() != DialogResult.OK)
                 return;

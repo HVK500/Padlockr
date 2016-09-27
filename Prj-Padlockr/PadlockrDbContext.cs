@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using Padlockr.Models;
 
 namespace Padlockr
 {
@@ -22,6 +23,7 @@ namespace Padlockr
         // todo: move into a service...
         List<string> GetAccounts();
         List<string> GetAccounts(string filter);
+        PasswordEntry GetPasswordEntry(string accountName);
     }
 
     public class PadlockrDbContext : IPadlockrDbContext
@@ -216,6 +218,28 @@ namespace Padlockr
             accounts.AddRange(from DataRow dr in accDataTable.Rows select dr["ACC_NAME"].ToString());
 
             return accounts;
+        }
+
+        public PasswordEntry GetPasswordEntry(string accountName)
+        {
+            var query = "SELECT ACC_NAME, USER_NAME, PASS, LINK, NOTES FROM PDB WHERE ACC_NAME = '" + accountName + "';";
+            var dt = GetDataTable(query);
+
+            if (dt.Rows.Count == 0)
+                return null;
+
+            var dr = dt.Rows[dt.Rows.Count - 1];
+
+            var entry = new PasswordEntry
+            {
+                AccountName = dr["ACC_NAME"].ToString(),
+                Link = dr["LINK"].ToString(),
+                Notes = dr["NOTES"].ToString(),
+                Password = dr["PASS"].ToString(),
+                Username = dr["USER_NAME"].ToString()
+            };
+
+            return entry;
         }
     }
 }
