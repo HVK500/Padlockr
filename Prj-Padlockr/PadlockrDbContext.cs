@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
 
 namespace Padlockr
 {
@@ -16,6 +18,10 @@ namespace Padlockr
         void SetConnectionStrings(string dbDir, string pass);
         DataTable GetDataTable(string query);
         bool AccountExists(string name);
+
+        // todo: move into a service...
+        List<string> GetAccounts();
+        List<string> GetAccounts(string filter);
     }
 
     public class PadlockrDbContext : IPadlockrDbContext
@@ -177,6 +183,39 @@ namespace Padlockr
         {
             var dt = GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME = '" + name + "';");
             return dt.Rows.Count > 0;
+        }
+
+
+        // todo: move into a Padlockr service
+        public List<string> GetAccounts()
+        {
+            var accounts = new List<string>();
+
+            var accDataTable = GetDataTable("SELECT ACC_NAME FROM PDB;");
+
+            if (accDataTable.Rows.Count == 0)
+                return accounts;
+
+            // Cycle through the items in the give DataTable
+            accounts.AddRange(from DataRow dr in accDataTable.Rows select dr["ACC_NAME"].ToString());
+
+            return accounts;
+        }
+
+        public List<string> GetAccounts(string filter)
+        {
+            var accounts = new List<string>();
+
+            var query = "SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + filter + "%';";
+            var accDataTable = GetDataTable(query);
+
+            if (accDataTable.Rows.Count == 0)
+                return accounts;
+
+            // Cycle through the items in the give DataTable
+            accounts.AddRange(from DataRow dr in accDataTable.Rows select dr["ACC_NAME"].ToString());
+
+            return accounts;
         }
     }
 }

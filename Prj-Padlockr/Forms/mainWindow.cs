@@ -49,8 +49,7 @@ namespace Padlockr.Forms
                                 // Check if it is the correct password
                                 if (DbContext.PassCheck())
                                 {
-                                    // todo: move into db class
-                                    PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                                    PopulateListBox(DbContext.GetAccounts());
                                     // Enable the menu controls
                                     menuItemChangeMasterPassword.Enabled = true;
                                     // Disabled because the open DB is the default already
@@ -131,8 +130,7 @@ namespace Padlockr.Forms
             }
 
             // Open the brand new database (empty)
-            // todo: move into db class
-            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetAccounts());
 
             // Change the title of the main window to display the name of the open DB
             Text = string.Format(Resources.WindowTitle, dbDir);
@@ -172,8 +170,7 @@ namespace Padlockr.Forms
                         if (!DbContext.PassCheck())
                             continue;
 
-                        // todo: move into db class
-                        PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+                        PopulateListBox(DbContext.GetAccounts());
                         
                         // Enable the menu controls
                         menuItemChangeMasterPassword.Enabled = true;
@@ -225,9 +222,8 @@ namespace Padlockr.Forms
                 DbContext.InsertData(ApoCleansing(ne.accNameTxtBox.Text), ApoCleansing(ne.userNameTxtBox.Text), ApoCleansing(ne.passMaskedTextBox.Text), ApoCleansing(ne.linkTxtBox.Text), ApoCleansing(ne.notesTxtBox.Text));
             }
 
-            // todo: move into DB class
             // Repop the listbox
-            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetAccounts());
 
         }
 
@@ -264,10 +260,9 @@ namespace Padlockr.Forms
             if (ee.ShowDialog() != DialogResult.OK)
                 return;
 
-            // todo: move into DB class
             // Capture the changes and send them to the DB
             DbContext.UpdateData(oldAccName, ApoCleansing(ee.userNameTxtBox.Text), ApoCleansing(ee.passMaskedTextBox.Text), ApoCleansing(ee.linkTxtBox.Text), ApoCleansing(ee.notesTxtBox.Text));
-            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetAccounts());
 
             listBox.SelectedIndex = -1;
             listBox_SelectedIndexChanged(sender, e);
@@ -286,8 +281,7 @@ namespace Padlockr.Forms
                 return;
 
             DbContext.DeleteData(sf);
-            // todo: move into DB class
-            PopulateListBox(DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;"));
+            PopulateListBox(DbContext.GetAccounts());
 
             if (listBox.Items.Count > 1)
                 return;
@@ -314,23 +308,21 @@ namespace Padlockr.Forms
         // Handles the search feature
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt;
+            List<string> accounts;
 
             if (string.IsNullOrWhiteSpace(txtBoxSearch.Text) == false)
             {
-                // todo: move into DB class
-                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB WHERE ACC_NAME LIKE '%" + txtBoxSearch.Text + "%';");
+                accounts = DbContext.GetAccounts(txtBoxSearch.Text);
                 btnClearSearch.Enabled = true;
             }
             else
             {
-                // todo: move into DB class
-                dt = DbContext.GetDataTable("SELECT ACC_NAME FROM PDB;");
+                accounts = DbContext.GetAccounts();
                 btnClearSearch.Enabled = false;
             }
 
             // Output result to listbox
-            PopulateListBox(dt);
+            PopulateListBox(accounts);
             listBox.SelectedIndex = -1;
             listBox_SelectedIndexChanged(sender, e);
         }
@@ -442,29 +434,28 @@ namespace Padlockr.Forms
             return dr[field].ToString();
         }
 
-        //TODO: Opitimise! Populates the listbox when provided with a datatable
-        private void PopulateListBox(DataTable dt)
+        private void    PopulateListBox(IReadOnlyCollection<string> accounts)
         {
             // Check whether the DataTable has data to output
-            if (dt.Rows.Count != 0)
+            if (accounts.Count != 0)
             {
                 // Clear the listbox of all items
                 listBox.Items.Clear();
 
                 // Cycle through the items in the give DataTable
-                foreach (DataRow dr in dt.Rows)
+                foreach (var account in accounts)
                 {
-                    // Prints out the datatable items to the listbox
-                    listBox.Items.Add(dr["ACC_NAME"].ToString());
+                    listBox.Items.Add(account);
                 }
 
+
                 // Enable controls - if there is data to edit and search
-                if (dt.Rows.Count > 1 )
+                if (accounts.Count > 1 )
                 {
                     lblSpyGlass.Enabled = true;
                     txtBoxSearch.Enabled = true;
                 }
-                else if (dt.Rows.Count == 1 && string.IsNullOrWhiteSpace(txtBoxSearch.Text))
+                else if (accounts.Count == 1 && string.IsNullOrWhiteSpace(txtBoxSearch.Text))
                 {
                     lblSpyGlass.Enabled = false;
                     txtBoxSearch.Enabled = false;
