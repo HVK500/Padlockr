@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using Padlockr.Models;
 using Padlockr.Properties;
 
 namespace Padlockr.Forms
@@ -218,13 +219,18 @@ namespace Padlockr.Forms
             if (ne.ShowDialog() == DialogResult.OK)
             {
                 // Insert data in to the DB
-                // todo: move into DB class
-                DbContext.InsertData(ApoCleansing(ne.accNameTxtBox.Text), ApoCleansing(ne.userNameTxtBox.Text), ApoCleansing(ne.passMaskedTextBox.Text), ApoCleansing(ne.linkTxtBox.Text), ApoCleansing(ne.notesTxtBox.Text));
+                DbContext.AddPasswordEntry(new PasswordEntry
+                {
+                    AccountName = ne.accNameTxtBox.Text,
+                    Username = ne.userNameTxtBox.Text,
+                    Password = ne.passMaskedTextBox.Text,
+                    Link = ne.linkTxtBox.Text,
+                    Notes = ne.notesTxtBox.Text
+                });
             }
 
             // Repop the listbox
             PopulateListBox(DbContext.GetAccounts());
-
         }
 
         private void btnEditEntry_Click(object sender, EventArgs e)

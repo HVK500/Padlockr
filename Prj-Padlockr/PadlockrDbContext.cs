@@ -24,6 +24,7 @@ namespace Padlockr
         List<string> GetAccounts();
         List<string> GetAccounts(string filter);
         PasswordEntry GetPasswordEntry(string accountName);
+        void AddPasswordEntry(PasswordEntry entry);
     }
 
     public class PadlockrDbContext : IPadlockrDbContext
@@ -91,6 +92,7 @@ namespace Padlockr
             }
         }
 
+        // todo: look at dropping in the not so near future
         // Insert new data into DB
         public void InsertData(string s1, string s2, string s3, string s4, string s5)
         {
@@ -240,6 +242,76 @@ namespace Padlockr
             };
 
             return entry;
+        }
+
+        public void AddPasswordEntry(PasswordEntry entry)
+        {
+            // Generate the insert command
+            var cmd = $"INSERT INTO PDB (ACC_NAME, USER_NAME, PASS, LINK, NOTES) " +
+                      $"VALUES " +
+                      $"('{ApoCleansing(entry.AccountName)}', '{ApoCleansing(entry.Username)}', " +
+                      $"'{ApoCleansing(entry.Password)}', '{ApoCleansing(entry.Link)}', " +
+                      $"'{ApoCleansing(entry.Notes)}');";
+
+            try
+            {
+                _db.OpenDbConnection();
+                _db.RunCommand(cmd);
+            }
+            catch (Exception ex)
+            {
+                // todo: [error] handle this better
+                throw new Exception();
+            }
+            finally
+            {
+                _db.CloseDbConnection();
+            }
+        }
+
+
+        // Helper methods
+        private static string ApoCleansing(string pass)
+        {
+            // Gets stores the password in the p
+            var p = pass;
+            // Counts the number of apostrophe's there are in the pass string
+            var c = p.Split('\'').Length - 1;
+
+            if (c == 0)
+                return p;
+
+            // New list to convert to an array to cycle through
+            var pos = new List<int>();
+            var temp = 0;
+
+            // Assembles the list of the index postions of the apostrophe's
+            for (var i = 0; i <= c - 1; i++)
+            {
+                pos.Add(p.IndexOf('\'', temp));
+                temp = p.IndexOf('\'', temp) + 1;
+            }
+
+            // Converts the list to an array
+            var n = pos.ToArray();
+
+            // Cycle through the array and double up the apostrophe's - because SQLite uses the second apostrophe as an escape symbol
+            for (var i = 0; i <= n.Length - 1; i++)
+            {
+                if (i != 0)
+                {
+                    // Apostrophe doubling up logic for all apostrophe's not in index 0
+                    p = p.Insert(n[i] + i, "'");
+                }
+                else
+                {
+                    // Initial doubling at index 0
+                    p = p.Insert(n[0], "'");
+                }
+            }
+
+            // Return the resulting password
+            return p;
         }
     }
 }
